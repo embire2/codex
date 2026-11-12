@@ -1,0 +1,1 @@
+Retry Windows with a short task-scoped Cargo cache, Git CLI fetch and process-scoped long paths; source/patch/lock/assertions and other builds remain unchanged.
