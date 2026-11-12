@@ -1,0 +1,4 @@
+Reviewed source/patch/build inputs verified on 2026-11-12.
+Runtime: 0.167.2; wrapper candidate: 2.0.48.
+Patch SHA256: b97f6b5e3b51f377be2b5f5d5920e579ef7e96a40e5470379aee4e05aaf26ba0
+No production secrets, model/routing/account/billing changes or paid/larger/self-hosted runners.
