@@ -1,0 +1,21 @@
+{
+  "stockNativeSha256": "a9672d0fa0dd8fcf8cad136fa0d056b914bc046f5ac3d78f4a5cf390655af56b",
+  "stockNativeBytes": 320248296,
+  "failedNativeSha256": "8a1428cc94065a375686ac5ec07be31d086bd63d83b4a642c5c1091aba3d9086",
+  "failedArtifactId": 13981490408,
+  "failedZipSha256": "297bdd06800e187bb92342c73cbf79660723a60d52f8baf21077cb192926e190",
+  "stockPackage": {
+    "id": "linux-x64",
+    "version": "0.167.2-linux-x64",
+    "integrity": "sha512-2Rw3VkWonMxwCSgOw+NkiKLOuOzyoQNWmxU7x8GniesdMfhKc4asNqOzTgQwJLKCrSlPc4/6fYTaH7fYcuGWGQ==",
+    "tarball": "https://registry.npmjs.org/@openai/codex/-/codex-0.167.2-linux-x64.tgz",
+    "os": [
+      "linux"
+    ],
+    "cpu": [
+      "x64"
+    ],
+    "runner": "ubuntu-22.04",
+    "target": "x86_64-unknown-linux-musl"
+  }
+}

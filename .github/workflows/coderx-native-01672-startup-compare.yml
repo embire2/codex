@@ -1,0 +1,44 @@
+name: MagnetAPI x64 musl startup and toy linkage diagnostics only
+on:
+  push:
+    branches: [magnetapi/coderx-01672-20261112]
+    paths: [magnetapi-native/0.167.2/RUN-STARTUP-COMPARE]
+permissions:
+  contents: read
+  actions: read # exact same-repository quarantined artifact only
+concurrency:
+  group: magnetapi-native-01672-startup-compare-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  diagnose:
+    if: github.repository == 'embire2/codex'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          path: control
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13'
+      - name: Install signed Ubuntu debugger and exact original musl tools on disposable runner
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gdb musl=1.2.2-4 musl-dev=1.2.2-4 musl-tools=1.2.2-4
+          rustup toolchain install 1.95.0 --profile minimal
+          rustup target add --toolchain 1.95.0 x86_64-unknown-linux-musl
+      - name: Fetch and checksum-verify exact quarantined and official bytes
+        env:
+          GH_ARTIFACT_READ_TOKEN: ${{ github.token }}
+        run: python control/magnetapi-native/0.167.2/native_startup_compare.py fetch
+      - name: Bounded version ELF debugger comparison and two tiny Rust linkage toys
+        run: python control/magnetapi-native/0.167.2/native_startup_compare.py compare
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: coderx-x64-startup-linkage-diagnostics-NOT-FOR-RELEASE
+          path: startup-comparison-reports/*
+          if-no-files-found: error
+          retention-days: 1
