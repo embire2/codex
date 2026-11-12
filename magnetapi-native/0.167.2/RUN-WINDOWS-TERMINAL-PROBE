@@ -1,0 +1,1 @@
+Synthetic ConPTY stdin/stdout/stderr handle QA only; ten-minute standard public runner. No product source/lock/native release byte change; no credentials, production session, RDP, or Windows Rust rebuild.

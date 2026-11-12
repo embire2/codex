@@ -1,0 +1,34 @@
+name: MagnetAPI native Windows ConPTY handle probe only
+on:
+  push:
+    branches: [magnetapi/coderx-01672-20261112]
+    paths: [magnetapi-native/0.167.2/RUN-WINDOWS-TERMINAL-PROBE]
+permissions:
+  contents: read
+concurrency:
+  group: magnetapi-native-01672-terminal-probe-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  probe:
+    if: github.repository == 'embire2/codex'
+    runs-on: windows-2025
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          path: control
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13'
+      - name: Check actual stdin stdout stderr console attachment with a synthetic own process
+        shell: pwsh
+        run: python control/magnetapi-native/0.167.2/windows_terminal_probe.py
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: coderx-windows-synthetic-terminal-probe
+          path: terminal-probe.json
+          if-no-files-found: error
+          retention-days: 1
