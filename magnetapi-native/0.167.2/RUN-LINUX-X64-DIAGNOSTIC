@@ -1,0 +1,1 @@
+Reviewed native-only startup diagnostic build. Retain exact native failure bytes before execution; no source, lock, compiler, target, link flags, profile, permission, or production change. Source ce21072c90d32c40af7a55b60b2fb35c84a43a6a; patch b97f6b5e3b51f377be2b5f5d5920e579ef7e96a40e5470379aee4e05aaf26ba0.

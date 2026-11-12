@@ -1,0 +1,136 @@
+name: MagnetAPI CoderX native 0.167.2 Linux x64 startup diagnostics
+
+on:
+  push:
+    branches: [magnetapi/coderx-01672-20261112]
+    paths: [magnetapi-native/0.167.2/RUN-LINUX-X64-DIAGNOSTIC]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: magnetapi-native-01672-linux-x64-diagnostic-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  native:
+    if: github.repository == 'embire2/codex'
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - platform: linux-x64
+            runner: ubuntu-22.04
+            target: x86_64-unknown-linux-musl
+    runs-on: ${{ matrix.runner }}
+    defaults:
+      run:
+        shell: bash
+    env:
+      CARGO_HOME: ${{ github.workspace }}/.cargo-home
+      RUSTUP_TOOLCHAIN: 1.95.0
+      CARGO_BUILD_JOBS: 2
+      CARGO_PROFILE_RELEASE_LTO: 'false'
+      CARGO_PROFILE_RELEASE_CODEGEN_UNITS: 16
+      CARGO_PROFILE_RELEASE_OPT_LEVEL: 1
+      CARGO_PROFILE_RELEASE_DEBUG: 0
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      TARGET: ${{ matrix.target }}
+      AWS_LC_SYS_NO_JITTER_ENTROPY: 1
+    steps:
+      - name: Checkout only reviewed build inputs
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # official v6, verified 2026-11-12
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          path: control
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # official v6, verified 2026-11-12
+        with:
+          python-version: '3.13'
+      - name: Verify official source, presentation patch and upstream helper resources
+        run: python control/magnetapi-native/0.167.2/prepare_native.py prepare '${{ matrix.platform }}'
+      - name: Install exact Rust compiler and target
+        run: |
+          rustup toolchain install 1.95.0 --profile minimal
+          rustup target add --toolchain 1.95.0 '${{ matrix.target }}'
+          rustc --version
+      - name: Install checksum-pinned Zig for musl
+        if: runner.os == 'Linux'
+        run: python control/magnetapi-native/0.167.2/prepare_native.py zig '${{ matrix.platform }}'
+      - name: Configure official musl build dependencies on the disposable runner
+        if: runner.os == 'Linux'
+        run: bash .github/scripts/install-musl-build-tools.sh
+      - name: Configure MSVC SDK on the disposable runner
+        if: runner.os == 'Windows'
+        uses: ./.github/actions/setup-msvc-env
+        with:
+          target: ${{ matrix.target }}
+      - name: Verify official prebuilt V8 archive and bindings
+        uses: ./.github/actions/setup-rusty-v8
+        with:
+          target: ${{ matrix.target }}
+      - name: Compile presentation fork
+        working-directory: codex-rs
+        run: cargo build --locked --release --target '${{ matrix.target }}' --bin codex --package codex-cli
+      - name: Capture exact native startup diagnostics before acceptance
+        run: |
+          python - <<'PY_DIAGNOSTIC'
+          from pathlib import Path
+          import hashlib, json, os, shutil, subprocess, tempfile
+          root = Path(os.environ["GITHUB_WORKSPACE"])
+          binary = root / "codex-rs/target/x86_64-unknown-linux-musl/release/codex"
+          output = root / "managed-diagnostics"
+          output.mkdir(exist_ok=False)
+          shutil.copy2(binary, output / "codex-NOT-FOR-RELEASE")
+          with tempfile.TemporaryDirectory(prefix="coderx-startup-") as directory:
+              env = {**os.environ, "HOME": directory, "USERPROFILE": directory, "CODEX_HOME": str(Path(directory) / ".codex"), "CODEXCLAUDE_MANAGED": "1", "CODEX_DISABLE_UPDATE_CHECK": "1"}
+              timed_out = False
+              try:
+                  result = subprocess.run([str(binary), "--version"], env=env, cwd=directory, text=True, capture_output=True, timeout=30)
+              except subprocess.TimeoutExpired as error:
+                  timed_out = True
+                  normalize = lambda value: value.decode("utf8", "replace") if isinstance(value, bytes) else value or ""
+                  result = subprocess.CompletedProcess([str(binary), "--version"], 124, normalize(error.stdout), normalize(error.stderr))
+              receipt = {"sourceCommit": "ce21072c90d32c40af7a55b60b2fb35c84a43a6a", "patchSha256": "b97f6b5e3b51f377be2b5f5d5920e579ef7e96a40e5470379aee4e05aaf26ba0", "nativeSha256": hashlib.file_digest(binary.open("rb"), "sha256").hexdigest(), "returncode": result.returncode, "timedOut": timed_out, "stdout": result.stdout[:16000], "stderr": result.stderr[:16000], "ciRunId": os.environ["GITHUB_RUN_ID"], "ciCommit": os.environ["GITHUB_SHA"]}
+              (output / "startup.json").write_text(json.dumps(receipt, indent=2) + "\n")
+              print(json.dumps(receipt))
+              for name, command in [("file", ["file", str(binary)]), ("elf-header", ["readelf", "-h", str(binary)]), ("elf-program", ["readelf", "-l", str(binary)]), ("elf-dynamic", ["readelf", "-d", str(binary)])]:
+                  if shutil.which(command[0]):
+                      report = subprocess.run(command, text=True, capture_output=True, timeout=30)
+                      (output / (name + ".txt")).write_text((report.stdout + report.stderr)[:128000])
+              if result.returncode != 0 and shutil.which("gdb"):
+                  try:
+                      trace = subprocess.run(["gdb", "--batch", "-nx", "-ex", "run", "-ex", "bt", "--args", str(binary), "--version"], env=env, cwd=directory, stdin=subprocess.DEVNULL, text=True, capture_output=True, timeout=60)
+                      trace_text = trace.stdout + trace.stderr
+                  except subprocess.TimeoutExpired as error:
+                      normalize = lambda value: value.decode("utf8", "replace") if isinstance(value, bytes) else value or ""
+                      trace_text = "GDB timed out after60seconds\n" + normalize(error.stdout) + normalize(error.stderr)
+                  (output / "gdb.txt").write_text(trace_text[:128000])
+              if result.returncode != 0 or "0.167.2" not in result.stdout:
+                  raise SystemExit("Native version/startup failed; diagnostic bytes retained, no release package")
+          PY_DIAGNOSTIC
+      - name: Native help, account/update boundaries, local tools and terminal smoke checks
+        run: python control/magnetapi-native/0.167.2/native_smoke.py '${{ matrix.platform }}'
+      - name: Package tested immutable platform archive with legal notices
+        run: python control/magnetapi-native/0.167.2/prepare_native.py pack '${{ matrix.platform }}'
+      - name: Retain verified build artifacts for one day
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # official v6, verified 2026-11-12
+        with:
+          name: coderx-01672-${{ matrix.platform }}
+          path: managed-artifacts/*
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+      - name: Retain failure diagnostics only for one day
+        if: failure()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # official v6
+        with:
+          name: coderx-01672-linux-x64-startup-diagnostics-NOT-FOR-RELEASE
+          path: managed-diagnostics/*
+          if-no-files-found: warn
+          retention-days: 1
+          compression-level: 0
