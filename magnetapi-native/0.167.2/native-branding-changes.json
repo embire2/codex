@@ -1,0 +1,3228 @@
+{
+  "changes": [
+    {
+      "path": "codex-rs/cli/src/main.rs",
+      "before": "fdd2b41303dba1f0d022c1d40268ffc0c1cb086c852a87ef437937822bda5339",
+      "after": "c5932a65c678ce366013c8c323319379aaac0754693af12848f203b811b54f3a"
+    },
+    {
+      "path": "codex-rs/exec/src/cli.rs",
+      "before": "66643e8b3d5964b70cb8f231fb309312376272fb3ea87bcb6849f44cf112f8f6",
+      "after": "792c6690dd8010b28c80c56c11256fbf1b46aebe9123d58ed3c980f90cc8650a"
+    },
+    {
+      "path": "codex-rs/tui/assets/tooltips.txt",
+      "before": "b17e6e65f97b5df24096523bf975011dd614c4e01a020ca02d658515b50580f1",
+      "after": "352fd9758f567fadc6b5c7603ec59c44670903bca21149ea572bd5a2bb7f384d"
+    },
+    {
+      "path": "codex-rs/tui/src/analytics/normalize.rs",
+      "before": "5f42b5ed7c7e42dfe2a92deabc110e8e6a00292a26fd767129dc81c4cbfe2a2e",
+      "after": "89bd9f8fd0c4611aa4e890f21d7229446535f489f3db624c712f9371e7001506"
+    },
+    {
+      "path": "codex-rs/tui/src/analytics/test_fixtures.rs",
+      "before": "fae84e0b529cff0c265cc0659c113a40a3217651ce8b5f0830e99cde14a03111",
+      "after": "08869bd72c19572b4cb9d3b6799443591fbff376ca9f3bb8a29ec08b19aa1d14"
+    },
+    {
+      "path": "codex-rs/tui/src/analytics/test_support.rs",
+      "before": "b6bdda721e44a4894c8b3975db72e969917675e71fa9d3f8d301f6ce698706fa",
+      "after": "b982eac0710af03029cf55496fd257b79cd9b3edc7f5e07ba649166dcfdf4440"
+    },
+    {
+      "path": "codex-rs/tui/src/app/agents_overview_new.rs",
+      "before": "a974d7b976604b7b7795122779d5f0683b982e8d90781e8523eb5cdd21bfe04c",
+      "after": "86f1adbd14e4d04c52750a434c846f15b3414255a7d1bc9b4411fef611022792"
+    },
+    {
+      "path": "codex-rs/tui/src/app/background_requests.rs",
+      "before": "f6e4c4166799b45fe8c049b899d04d979bd66d1ec6268ac779ffb10df1b05c76",
+      "after": "aa2919289a6f82b481b170405a817ea4799824f2d5605e1b079a6a48b06beda6"
+    },
+    {
+      "path": "codex-rs/tui/src/app/config_panel.rs",
+      "before": "95ea52b74d8a54f09c8890ff55f1f3820156c669541c5140b7e16c321e49c835",
+      "after": "1634c7d2733e2ed80147ca408fa2fff99bb0aaeca1ada873ca550d9f155c02ee"
+    },
+    {
+      "path": "codex-rs/tui/src/app/config_persistence.rs",
+      "before": "cf9af1837737eaa597b7b4c24ec909bc928833923ed4bf9dd09f3205609df5b3",
+      "after": "5ec8c0df7184e16c00e6203741fe7d1635c985edadb07ccc1ea7797d78ab83f4"
+    },
+    {
+      "path": "codex-rs/tui/src/app/daemon_menu.rs",
+      "before": "9d36adf1e791ee2b20f11ab8d9892452a0d29983989071c7ccbebe702b701f5b",
+      "after": "dddf513d3806a0c61d2751ab338cd4c536587bd89c8dd7e2718c6fe23be29aee"
+    },
+    {
+      "path": "codex-rs/tui/src/app/event_dispatch.rs",
+      "before": "51ad6b4665a4d72ff82baeef3ab92255c8ec1c3e33403a9370709fc7bd958e20",
+      "after": "2dc8ed692d6490ba271401fcaeadb5537084bec0d52fb70325c76b760abe2bc2"
+    },
+    {
+      "path": "codex-rs/tui/src/app/input.rs",
+      "before": "823dcb9b22ff4df282a926bfa3116dc1e0fcf0d2c543c231f6273a84ae874e64",
+      "after": "75d16b28bfff8fbdc3c7db672a343941a4ef713b07782057eae3125419925f64"
+    },
+    {
+      "path": "codex-rs/tui/src/app/managed_worktree_creation.rs",
+      "before": "e744025809a0d6a67cce439167f3ddf62227eafba1a040cbc99297de5e2ab44d",
+      "after": "c166476fad1823b72cb86a337ae98755cfc39cb9b7e737d4d606ab36e50d7f96"
+    },
+    {
+      "path": "codex-rs/tui/src/app/platform_actions.rs",
+      "before": "78f97757aa74c2a2f0816311827796129742ef8d33d92241be825c9d655dbba2",
+      "after": "dfd673c94bfb34e8b9ae0506fcc95d9526b707403f9d26d4021d60964cc5b485"
+    },
+    {
+      "path": "codex-rs/tui/src/app/reconnect.rs",
+      "before": "defc628c098436e669ec4ab44d4da10337f2ab5d3cf31e7abe45d410bffd366b",
+      "after": "9ef4659095a9b71ba39f95b1ad73f217654d175a2f7155886f20b9caeb55ed3d"
+    },
+    {
+      "path": "codex-rs/tui/src/app/server_version_notice.rs",
+      "before": "10f58e08973e45b3e15c6dfc2ac2b62481232801d60e8d98bad74c9cd42ee3ed",
+      "after": "82d478ae50695989e248a293cd359c1d4a0367d7540d69b913f054e850d5c84c"
+    },
+    {
+      "path": "codex-rs/tui/src/app/startup.rs",
+      "before": "fbbedd6664ddb1df28fa49ac055bac130b1c7996815ead701fecddcbd41565cf",
+      "after": "547a27b7d0677efde6d7bf8d0c41a753e8682be05febec79e1a5dd643db304b3"
+    },
+    {
+      "path": "codex-rs/tui/src/app/startup_prompts.rs",
+      "before": "85beeb2b9e7ecb4aad7662178ec9087eda810a980f80cdd5371c197b7f7bd7c3",
+      "after": "88d8250f73df9370a88747a460b23ddfc2fd13998be7c0e34c5334b63b6a98c9"
+    },
+    {
+      "path": "codex-rs/tui/src/app/startup_warnings.rs",
+      "before": "3e84ce9be2d2694eebad5b04ef491145044e9bd36d79015b1b87a5af4b92b698",
+      "after": "bec72bad72268eba8b18fef1cf1507cbc9bf5a077b6e1af204f058854243cee5"
+    },
+    {
+      "path": "codex-rs/tui/src/app/transcript_export.rs",
+      "before": "d7809f05d397a6076a2aa900c18b8224e999d5a0d2de0bfb489beb4a5c010fa0",
+      "after": "6a5fc097bb51fc8623e34547b23cf4943a5a89a48901336ff66ab800bd523cf5"
+    },
+    {
+      "path": "codex-rs/tui/src/app/tui_mode_picker.rs",
+      "before": "56540045b09cee7de944884e5ef1769c0edc4d5a96bd2b7cce57ebb29b9add04",
+      "after": "3cbd5d8f94017df76324be64a2e5ee8f586b54e8d0019e0e8e90f76ee9729cc0"
+    },
+    {
+      "path": "codex-rs/tui/src/app/user_verification_errors.rs",
+      "before": "5a874d3e88f2d11cca2b858524e76df6c16644713e6847b99c279e2f81cd0c3b",
+      "after": "d93cd1341d854accbb2476a8b7981ba1055e4d0d020eba43752bfb2b6371110d"
+    },
+    {
+      "path": "codex-rs/tui/src/bottom_pane/approval_overlay.rs",
+      "before": "060c90587bf660fc653b61554843f7d2053a3e889059aea86d9cf33387f32116",
+      "after": "f903171e9d4d5600c8deedad3cd10d476dceb6a48e6590307409c4ca1bb30afc"
+    },
+    {
+      "path": "codex-rs/tui/src/bottom_pane/experimental_features_view.rs",
+      "before": "d009451addfcc540896cd54c011bff7f08231cfb4530b8f52cdadf4f44417bc3",
+      "after": "a53f0a389a6d02c5a0a47b63b8800b4eeaa9b09edd91fd9d00041911b2dd04c1"
+    },
+    {
+      "path": "codex-rs/tui/src/bottom_pane/feedback_view.rs",
+      "before": "d7e71e8d63075adbe363a80cf93b351ca40cef27bd863e107c9058948a210b2a",
+      "after": "6bfbd06eadd723a98e873c396886b026e324510c4737608a1173db1e621290c0"
+    },
+    {
+      "path": "codex-rs/tui/src/bottom_pane/hooks_browser_view.rs",
+      "before": "3e0e44797daa17ded5beee35ea5c988ef226a91b9bb6054b94101c3a309526c3",
+      "after": "5060fc837d9f354ab75b61f0911b105194b1e09098b7b4059e752820a11317e2"
+    },
+    {
+      "path": "codex-rs/tui/src/bottom_pane/memories_settings_view.rs",
+      "before": "e0bcba1c700f8192c9760ab563125534701cb998989f6b8b6b37039fe240c260",
+      "after": "99f6e859aecb80310a4614a285ae6ebd3dccce68b25785b3d6991cf1f1b211d2"
+    },
+    {
+      "path": "codex-rs/tui/src/bottom_pane/status_line_setup.rs",
+      "before": "a6efdbe89b929781e24aa828adab8ea544b10a3aac38d92a931cc08b9049b5b0",
+      "after": "aca778dda10265323c87e7f392cb615d05b81a71db78b6074d683186e0823736"
+    },
+    {
+      "path": "codex-rs/tui/src/bottom_pane/title_setup.rs",
+      "before": "3502a52b3ac7d2c99d55a128bc8b27ffc312ea61cc10d8ba88259e0198e0da97",
+      "after": "49ed31454c502d3b6a8dd7bf9bffea881391cf92df4789ff022253b4f71970b5"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget.rs",
+      "before": "b4ad748e85d24e5e9238b9de78eb05897521fd492de5a52438a721a3142b9d2e",
+      "after": "6a61166e9874e0dda867ca96342c72a1cbbd3de920ae8fbac5059ba35f52b54b"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/connectors.rs",
+      "before": "64ff257d802176eaac47b3652142f383f70d20e07a7384b6afabe8fc6848b541",
+      "after": "6fceab8aa7f718c4854273269d344fa9debad040d7b13a196a8d64a52d929132"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/notifications.rs",
+      "before": "28be8805af53daf15d1bb6b4892058120f4e4d0ab659be85e393255c48cae66d",
+      "after": "78107889c23c8c6784314eaf974ae310f7188d1e51ef6f441ed3dfcca42c071b"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/permission_popups.rs",
+      "before": "b51b084057d900135b8b8d7c224861063feb5d02b6044ed94258171ab3574d27",
+      "after": "53a3a06969ef19c512e30a111b4ec0b11b18ba7bac40adf777e8fa0d1e82bde7"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/permissions_menu.rs",
+      "before": "a477d0567b2e8687181e0da3a5959f368620d8800714c2a6b5f56de88dd0f14a",
+      "after": "9c1266762cfa24b665013d26dc6f5d9bf253705474dec257e55e193f66028d85"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/plugin_catalog.rs",
+      "before": "6b597923c897a558b7387356af19f5d82be253e898c2a8ba5171d66d65117e16",
+      "after": "60e13e70f0b036cc0fc93f4520e082c3dbfac3524cbc25ca90f8e52e24a836fb"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/provider_error.rs",
+      "before": "ba608a289a99652cef638fab9aede7acd59189b27106000aec954901e0d084bc",
+      "after": "a12b91e60d08e746b998ec7f8372112574d264e177f25317fb807a51497b8123"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/replay.rs",
+      "before": "3444d6ce053a8657dd1fa71577cef78063349bb16b3b98d4b757c1958caf4435",
+      "after": "5cc03cb0db2f716ca39a75bb46f0cfe04071cf74fd313f6540e9c17673e64217"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/safety_buffering.rs",
+      "before": "dbedbbc8c1ec1e454b301a4cad288d2788b587c4da47d28a7125c37c69b902ec",
+      "after": "f7e62b36e76dbeb85e807eb83c597ffa33cf39ab4166f649a923f1df1aef16db"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/slash_dispatch.rs",
+      "before": "06de9b63269286def197aeb4949df2c2b8e5898714bf4eaac08c84dae678f68a",
+      "after": "3af842c01f8731ef90f20c5bc88ee2de088db8a57a175e4b81b8a8de514e6d90"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/tui_mode_picker.rs",
+      "before": "fef79f2c62d0b91f5ec7ef8087edbdb216519eec46cb35906987c26db5aa6902",
+      "after": "655b9bd50cac88555797cf51d79235372409bb83848cb5bce975828a9ea83703"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/turn_runtime.rs",
+      "before": "d08240e997212decf28f644d377f29138727e3e302393eabed5c97b57efe4c1b",
+      "after": "a89cfd0f2ee30da842bb3904aec2001574746e76448924d12cc1d3fd34b1b088"
+    },
+    {
+      "path": "codex-rs/tui/src/chatwidget/windows_sandbox_prompts.rs",
+      "before": "d1c987c556796db6bbc6d6523000c89198ce467a5f597b6b7be8b3d220bc56c1",
+      "after": "c6441095555a1a54442739760cd29faae7d1a732f16b3525a34f8c616e4337ba"
+    },
+    {
+      "path": "codex-rs/tui/src/daemon_recovery.rs",
+      "before": "85170ae109565ccc51712da82a2b7192ef0bc0c86a2efef7f5014dc4c95c20b3",
+      "after": "b3e1731b35da3d754ace8806ff8d73244b24c369f10b4fd8ada08122d13c2b18"
+    },
+    {
+      "path": "codex-rs/tui/src/daemon_startup.rs",
+      "before": "aa3a928644c825872fa75c050dfa2704356a29e87567f4819e4459e7306adaee",
+      "after": "036b6022be9fd67c147cc23c807410259c508258f55fa12dff3a843fd8e0cb90"
+    },
+    {
+      "path": "codex-rs/tui/src/external_agent_config_migration/model.rs",
+      "before": "a9dc2eac3abef1d9eefa8ff9a4dda68f1aa4cb03049f741bddb7acaac701b4b4",
+      "after": "6074231a5eb84548511a136b12a618a0333af3153be696ac9dd9bc9a70a25fd7"
+    },
+    {
+      "path": "codex-rs/tui/src/external_agent_config_migration/render.rs",
+      "before": "3f40eaac292953addd56cc07a6298514e2d1b851df94ff16cd6eb9caa4ccc4d6",
+      "after": "98623b793fb182ddea462ea767197abcb801279042c5bce8446d12189b2ac962"
+    },
+    {
+      "path": "codex-rs/tui/src/goal_files.rs",
+      "before": "a1f5767c893278ddbe3c15da3d1c61bea9c9a4146579ddd3ad5658a10c11a20a",
+      "after": "f3b5aad4583246c6c45f0defb94d6947e44e2c9d57ab723b1378f270c0fd9ab5"
+    },
+    {
+      "path": "codex-rs/tui/src/history_cell/approvals.rs",
+      "before": "efb4990046f01a6c2c1f6be12e880b12b34e91c0674cf6c0ce2a6f71fd607b1d",
+      "after": "182db2b2b0a9e03fd457878c3a939ee94ab168b4193c00eaf8bac6ae96153ddc"
+    },
+    {
+      "path": "codex-rs/tui/src/history_cell/session.rs",
+      "before": "6cfd9c096f1f386a575db4ad0807d942875c7e3150d1cdce73ee46c83d3782a5",
+      "after": "bc6c1a86e57cc710b93196c2419397ccbbb61aa86129fd62acad7a07ae1fd19f"
+    },
+    {
+      "path": "codex-rs/tui/src/ide_context/ipc.rs",
+      "before": "5f94ea1b871b855391fd0727080b4caf8fd010a3ff4d4d8b21d89c273bb2536d",
+      "after": "64bc390711629c4ff461a48dfbba1a767650c10a2c9bc39cd928b969e73e10a1"
+    },
+    {
+      "path": "codex-rs/tui/src/keymap.rs",
+      "before": "c1e213269eb2c0adec2e033b4f228c3fbee83787b57a28b8914166ba642a3e88",
+      "after": "05365cf1c7195eb002b7cc4c28396671e8196a6baf3d5151e872e027b7c213ed"
+    },
+    {
+      "path": "codex-rs/tui/src/keymap_setup/debug.rs",
+      "before": "fb874a165813897bad876fd538197e04c734064bb0b0a39a018a7e93764ed693",
+      "after": "f82ce2be861308a6ec55b92401d5d570a7810fb27bff29ea9b404b97cfb4f1aa"
+    },
+    {
+      "path": "codex-rs/tui/src/keymap_setup/picker.rs",
+      "before": "f462b50cac91e94985c47855bdfcaf391be66ca53783ca2a62c47e3c866ff14b",
+      "after": "a38e4f2b2a97c60669c79a3d343a848df6c5e55cd2d1f845679498d756e75b39"
+    },
+    {
+      "path": "codex-rs/tui/src/lib.rs",
+      "before": "1273443044cb0a130f550029e7f833b1068c35a2c1d7a0ccf4fad552fcf0ac46",
+      "after": "88894323ac34afacce9db3ea7be1e76032423dca6a6f05ff7de00881fbd951ce"
+    },
+    {
+      "path": "codex-rs/tui/src/model_migration.rs",
+      "before": "49a44d5e36bcc4af16d7a41290989d8fd55c054f7016432356eec75df91f29b5",
+      "after": "efb229f176c7cdb2d191a3c6f9359b555a5e0b70b9a94af0e7b3408cb2beb068"
+    },
+    {
+      "path": "codex-rs/tui/src/onboarding/bedrock.rs",
+      "before": "79b9198936c3d153dfcf1e90dc1f97ef0b6c0b31afc1c5f03ffbfb1459628817",
+      "after": "0cd1a7e084300c9a43482fa265619541fce42e2a68afdcaa6c4149284d241ddd"
+    },
+    {
+      "path": "codex-rs/tui/src/onboarding/gcp.rs",
+      "before": "9942ae11452262a3fc263ea72206ff601dc439cb615b440bffba733dfee4e47a",
+      "after": "5279ef20c9aac75937d6273bce28c918ee2fa32d35268610a5f2f4af12eb9395"
+    },
+    {
+      "path": "codex-rs/tui/src/onboarding/trust_directory.rs",
+      "before": "e7f9ec3e16463ce52f7914df275b2e23ad652f9814ecf4d16faa28fb64fad7f7",
+      "after": "2184243d05fcc8ac4272e9c9a64b7c48d206bdb698c694b8c9635fac9db173bf"
+    },
+    {
+      "path": "codex-rs/tui/src/onboarding/welcome.rs",
+      "before": "d1cea05075ab2b17618acaf543deab55a085b295120f6eb68f6b64289293f4a0",
+      "after": "e665d1d782aaa7191f26be0c706a15fa4993584c6f2990881e3db7799710df64"
+    },
+    {
+      "path": "codex-rs/tui/src/permission_discovery.rs",
+      "before": "434ba72c9152839a945565dcb14d4875cc9a1d062e918e83560d8809b60b8b11",
+      "after": "2adc53956ce1f3e1553100580ca28f7501a910900e6fd572808d2663b2ef5ef9"
+    },
+    {
+      "path": "codex-rs/tui/src/pets/catalog.rs",
+      "before": "7ffd87faa974355098b823ad2876678d503bc83439bd5f4c9be2b0cbe15ba022",
+      "after": "8ffee29fcc084d60470e44094e5d093f5ddb79a14b798b9427331f4264b6a67e"
+    },
+    {
+      "path": "codex-rs/tui/src/pets/image_protocol.rs",
+      "before": "97387a18c182c89e2509ac5399a3b21430b71dd337815bdcd36e74dce07aa564",
+      "after": "3b423de041c3e7208d86e7551b2c30d58b31c6b9a5ca1cc42470c9109e0bb90e"
+    },
+    {
+      "path": "codex-rs/tui/src/session_archive_commands.rs",
+      "before": "2ca063fc7e31eb371dcfbf36a8c35dfae43935be1ad8094dff77ce3d72f0183e",
+      "after": "545d0374624d3063efbe2fb38567e7d67f2526427f591b636c7d2e69c59c7960"
+    },
+    {
+      "path": "codex-rs/tui/src/session_queue_commands.rs",
+      "before": "ce066c82b38a97d89fb5d134472cc458203853961b14d31cf6d003bcaa909737",
+      "after": "3f8cb808813381ef299ff45dd5c24b5d35f637de62b2774484bd8017df2f379e"
+    },
+    {
+      "path": "codex-rs/tui/src/slash_command.rs",
+      "before": "38f7b149fa54d62bbe6f99fad6bd6faed1c697663e75abe65379c27f4ff6bff2",
+      "after": "ffffd7ec99a0c8f20b26d548814398d194210b23a1ef61627682eea9dee39161"
+    },
+    {
+      "path": "codex-rs/tui/src/startup_draft.rs",
+      "before": "6299bee1dafbcc9c749adddf8901743c440aa8152a3327c3891dda9415c102e6",
+      "after": "87f28313768668470b99d79c298220b738a1c0c42d3d004abbeffdfdcbbb485a"
+    },
+    {
+      "path": "codex-rs/tui/src/status/remote_connection.rs",
+      "before": "f424ae91004febe5b5fa4dd331e329373ba4a1ba78f2b9f3d1c8ea109c0df04f",
+      "after": "4527edf82f6ff696679998b4dbd15654b2d9b2867b44170ba41c448fce4a5c4a"
+    },
+    {
+      "path": "codex-rs/tui/src/task_mentions.rs",
+      "before": "cc678798a538e355494ff81082529e8bc012896f29fd585fa4d43eca9391564e",
+      "after": "165d8cacf6a6102173ca70a17657456f8f3a257dbb0c0e13bd5bda81eb709084"
+    },
+    {
+      "path": "codex-rs/tui/src/thread_transcript.rs",
+      "before": "bc78eea4a102ae5792c3c5d5850d2857d96d43c89685986fc1941872532ebc47",
+      "after": "12375133ffceb3611362aabd6ae0883789ee4ef9b0e7d3608ff4086551eff696"
+    },
+    {
+      "path": "codex-rs/tui/src/tooltips.rs",
+      "before": "ca4888cb03c0acbd57f80c17d15824fa64a2080a9eb803c72ce7700ec22585e5",
+      "after": "4e19d18610553311722da5a3817f1edc0bc3397aa45e129570544f2618779c7a"
+    }
+  ],
+  "protectedOwners": [
+    "codex-rs/tui/src/goal_files.rs",
+    "codex-rs/tui/src/user_prompt.rs",
+    "codex-rs/tui/src/async_question_reply.rs",
+    "codex-rs/tui/src/ide_context/prompt.rs",
+    "codex-rs/tui/src/dynamic_tools.rs",
+    "codex-rs/tui/src/external_agent_config_migration/mod.rs",
+    "codex-rs/tui/src/onboarding/auth.rs",
+    "codex-rs/tui/src/onboarding/auth/",
+    "codex-rs/tui/src/local_chatgpt_auth.rs",
+    "codex-rs/tui/src/backend_banners/",
+    "codex-rs/tui/src/bottom_pane/feedback_note_view.rs"
+  ],
+  "protectedMarkers": [
+    "OpenAI-Beta",
+    "OpenAI.Codex",
+    "OPENAI_APPLE_TEAM_IDENTIFIER",
+    "https://auth.openai.com",
+    "## My request for Codex:",
+    "Read the Codex goal objective file at "
+  ],
+  "protectedStringConstants": {
+    "codex-rs/tui/src/status_indicator_widget.rs": {
+      "DETAILS_PREFIX": "\"  \u2514 \""
+    },
+    "codex-rs/tui/src/inline_visualization.rs": {
+      "DIRECTIVE_PREFIX": "\"::codex-inline-vis{\"",
+      "CONTENT_REFERENCE_PREFIX": "\"\\u{e200}visualize\\u{e202}\"",
+      "LINK_PLACEHOLDER_PREFIX": "\"https://codex.invalid/inline-visualization/\""
+    },
+    "codex-rs/tui/src/chatwidget/slash_dispatch.rs": {
+      "PLAN_PREFIX": "\"/plan \"",
+      "GOAL_PREFIX": "\"/goal \""
+    },
+    "codex-rs/tui/src/chatwidget/warnings.rs": {
+      "FALLBACK_MODEL_METADATA_WARNING_PREFIX": "\"Model metadata for `\"",
+      "FALLBACK_MODEL_METADATA_WARNING_SUFFIX": "\"` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.\""
+    },
+    "codex-rs/tui/src/chatwidget/plugin_catalog.rs": {
+      "MARKETPLACE_TAB_ID_PREFIX": "\"marketplace:\"",
+      "REMOTE_LOADING_TAB_ID_PREFIX": "\"remote-loading:\"",
+      "REMOTE_EMPTY_TAB_ID_PREFIX": "\"remote-empty:\"",
+      "REMOTE_ERROR_TAB_ID_PREFIX": "\"remote-error:\""
+    },
+    "codex-rs/tui/src/chatwidget/status_surfaces.rs": {
+      "TERMINAL_TITLE_ACTION_REQUIRED_PREFIX": "\"[ ! ] Action Required\"",
+      "TERMINAL_TITLE_ACTION_REQUIRED_PREFIX_HIDDEN": "\"[ . ] Action Required\""
+    },
+    "codex-rs/tui/src/chatwidget/turn_runtime.rs": {
+      "LEGACY_SAFETY_ACCESS_BLOCK_PREFIX": "\"Invalid prompt: we've limited access to this content for safety reasons.\"",
+      "BIO_POLICY_SAFETY_ACCESS_BLOCK_PREFIX": "\"This content was flagged for possible biological risk.\""
+    },
+    "codex-rs/tui/src/chatwidget/mcp_startup.rs": {
+      "MCP_STARTUP_SINGLE_HEADER_PREFIX": "\"Booting MCP server:\"",
+      "MCP_STARTUP_MULTI_HEADER_PREFIX": "\"Starting MCP servers\""
+    },
+    "codex-rs/tui/src/app/recap_history.rs": {
+      "EXCERPT_MARKER": "\"\\n[... excerpted ...]\\n\""
+    },
+    "codex-rs/tui/src/pets/model.rs": {
+      "CUSTOM_PET_PREFIX": "\"custom:\""
+    },
+    "codex-rs/tui/src/bottom_pane/list_selection_view.rs": {
+      "SELECTION_TOGGLE_ON_PREFIX": "\"[*] \"",
+      "SELECTION_CHECKBOX_ON_PREFIX": "\"[x] \"",
+      "SELECTION_TOGGLE_OFF_PREFIX": "\"[ ] \"",
+      "SELECTION_TOGGLE_UNAVAILABLE_PREFIX": "\"[-] \"",
+      "SELECTION_TOGGLE_BLOCKED_PREFIX": "\"[!] \""
+    },
+    "codex-rs/tui/src/bottom_pane/action_required_title.rs": {
+      "ACTION_REQUIRED_PREVIEW_PREFIX": "\"[ ! ] Action Required\""
+    }
+  },
+  "protectedParserLiterals": {
+    "codex-rs/tui/src/keymap_setup.rs": [
+      [
+        "starts_with",
+        "\"leader \""
+      ],
+      [
+        "starts_with",
+        "\"leader \""
+      ],
+      [
+        "starts_with",
+        "\"Agents \""
+      ],
+      [
+        "contains",
+        "\"Repeat Last Change\""
+      ],
+      [
+        "contains",
+        "\"Redo\""
+      ],
+      [
+        "contains",
+        "\"Keymap\""
+      ],
+      [
+        "contains",
+        "\"Open Transcript\""
+      ],
+      [
+        "contains",
+        "\"ctrl-t\""
+      ],
+      [
+        "contains",
+        "\"Selected Action\""
+      ],
+      [
+        "contains",
+        "\"Source: default keymap\""
+      ],
+      [
+        "contains",
+        "\"Still waiting?\""
+      ],
+      [
+        "contains",
+        "\"Still waiting?\""
+      ],
+      [
+        "contains",
+        "\"global.copy (Copy)\""
+      ],
+      [
+        "contains",
+        "\"[Custom]\""
+      ],
+      [
+        "contains",
+        "\"composer.queue (Queue)\""
+      ],
+      [
+        "contains",
+        "\"[Custom global]\""
+      ],
+      [
+        "contains",
+        "\"composer.submit\""
+      ],
+      [
+        "contains",
+        "\"alt-enter\""
+      ],
+      [
+        "contains",
+        "\"composer.nope\""
+      ]
+    ],
+    "codex-rs/tui/src/exec_command.rs": [
+      [
+        "contains",
+        "\":\\\\\""
+      ]
+    ],
+    "codex-rs/tui/src/terminal_hyperlinks.rs": [
+      [
+        "contains",
+        "\"\\x1b]8;;\""
+      ],
+      [
+        "starts_with",
+        "\"file://\""
+      ]
+    ],
+    "codex-rs/tui/src/resume_picker_transcript_preview.rs": [
+      [
+        "ends_with",
+        "\".jsonl\""
+      ]
+    ],
+    "codex-rs/tui/src/session_start.rs": [
+      [
+        "contains",
+        "\" is archived. Run `codex unarchive \""
+      ],
+      [
+        "split_once",
+        "\" (code \""
+      ]
+    ],
+    "codex-rs/tui/src/lib.rs": [
+      [
+        "split_once",
+        "\"://\""
+      ],
+      [
+        "strip_prefix",
+        "\"unix://\""
+      ]
+    ],
+    "codex-rs/tui/src/tui.rs": [
+      [
+        "contains",
+        "\"shell line\""
+      ],
+      [
+        "contains",
+        "\"stale\""
+      ]
+    ],
+    "codex-rs/tui/src/branch_summary.rs": [
+      [
+        "strip_prefix",
+        "\"HEAD branch:\""
+      ]
+    ],
+    "codex-rs/tui/src/markdown.rs": [
+      [
+        "contains",
+        "\"```\""
+      ],
+      [
+        "contains",
+        "\"~~~\""
+      ],
+      [
+        "contains",
+        "\" 1      2\""
+      ],
+      [
+        "contains",
+        "\" Col A    Col B    Col C\""
+      ],
+      [
+        "contains",
+        "\" left    right\""
+      ],
+      [
+        "contains",
+        "\"```\""
+      ]
+    ],
+    "codex-rs/tui/src/named_session_lookup.rs": [
+      [
+        "starts_with",
+        "\"failed to read thread: thread-store internal error: session metadata \""
+      ],
+      [
+        "contains",
+        "\" belongs to thread \""
+      ]
+    ],
+    "codex-rs/tui/src/debug_config.rs": [
+      [
+        "contains",
+        "\"(enabled)\""
+      ],
+      [
+        "contains",
+        "\"(disabled)\""
+      ],
+      [
+        "contains",
+        "\"reason: project is untrusted\""
+      ],
+      [
+        "contains",
+        "\"Requirements:\""
+      ],
+      [
+        "contains",
+        "\"  <none>\""
+      ],
+      [
+        "contains",
+        "\"allowed_approvals_reviewers: auto_review (source: MDM managed_config.toml (legacy))\""
+      ],
+      [
+        "contains",
+        "\"mcp_servers: docs (source: MDM managed_config.toml (legacy))\""
+      ],
+      [
+        "contains",
+        "\"secret-looking-value\""
+      ],
+      [
+        "contains",
+        "\"  - rules:\""
+      ],
+      [
+        "contains",
+        "\"danger-full-access\""
+      ],
+      [
+        "contains",
+        "\"external-sandbox\""
+      ],
+      [
+        "contains",
+        "\"allowed_approvals_reviewers: auto_review (source: MDM managed_config.toml (legacy))\""
+      ],
+      [
+        "contains",
+        "\"Requirements:\\n  <none>\""
+      ],
+      [
+        "contains",
+        "\"session-flags (enabled)\""
+      ],
+      [
+        "contains",
+        "\"     - model = \\\"gpt-5\\\"\""
+      ],
+      [
+        "contains",
+        "\"     - sandbox_workspace_write.network_access = true\""
+      ],
+      [
+        "contains",
+        "\"sandbox_workspace_write.writable_roots\""
+      ],
+      [
+        "contains",
+        "\"/tmp\""
+      ],
+      [
+        "contains",
+        "\"legacy managed_config.toml (MDM) (enabled)\""
+      ],
+      [
+        "contains",
+        "\"MDM value:\""
+      ],
+      [
+        "contains",
+        "\"# managed by MDM\""
+      ],
+      [
+        "contains",
+        "\"model = \\\"managed_model\\\"\""
+      ],
+      [
+        "contains",
+        "\"approval_policy = \\\"never\\\"\""
+      ],
+      [
+        "contains",
+        "\"enterprise-managed (Base policy, cfg_123) (enabled)\""
+      ],
+      [
+        "contains",
+        "\"Enterprise-managed config value:\""
+      ],
+      [
+        "contains",
+        "\"MDM value:\""
+      ],
+      [
+        "contains",
+        "\"# managed by cloud\""
+      ],
+      [
+        "contains",
+        "\"model = \\\"enterprise_model\\\"\""
+      ],
+      [
+        "contains",
+        "\"approval_policy = \\\"never\\\"\""
+      ],
+      [
+        "contains",
+        "\"hooks:\""
+      ],
+      [
+        "contains",
+        "\"handlers=1\""
+      ]
+    ],
+    "codex-rs/tui/src/resume_picker.rs": [
+      [
+        "contains",
+        "\"Session:    feat(tui): add raw scrollback mode (019dabc1-0ef5-7431-b81c-03037f51f62c)\""
+      ],
+      [
+        "contains",
+        "\"Created:    17 minutes ago \u00b7 2026-05-02 14:31:08\""
+      ],
+      [
+        "contains",
+        "\"Updated:    now \u00b7 2026-05-02 14:48:19\""
+      ],
+      [
+        "contains",
+        "\"Branch:     \ue0a0 codex/raw-scrollback-mode\""
+      ],
+      [
+        "contains",
+        "\"Conversation:\""
+      ],
+      [
+        "starts_with",
+        "\"  3h ago\""
+      ],
+      [
+        "starts_with",
+        "\"  5h ago\""
+      ],
+      [
+        "contains",
+        "\"created 5h ago\""
+      ],
+      [
+        "contains",
+        "\"updated 3h ago\""
+      ],
+      [
+        "contains",
+        "\"\u2301 /tmp/codex\""
+      ],
+      [
+        "contains",
+        "\"\ue0a0 no branch\""
+      ],
+      [
+        "contains",
+        "\"\u2301 ~/code/codex.\""
+      ],
+      [
+        "contains",
+        "\"...\""
+      ],
+      [
+        "contains",
+        "\"\ue0a0 owner/branch\""
+      ],
+      [
+        "contains",
+        "\"4h ago\""
+      ],
+      [
+        "contains",
+        "\"\ue0a0 owner/branch\""
+      ],
+      [
+        "contains",
+        "\"\u2301\""
+      ],
+      [
+        "contains",
+        "\"~/code\""
+      ],
+      [
+        "contains",
+        "\"esc start new\""
+      ],
+      [
+        "contains",
+        "\"esc clear search\""
+      ],
+      [
+        "contains",
+        "\"esc exit\""
+      ],
+      [
+        "contains",
+        "\"\u2303c exit\""
+      ],
+      [
+        "contains",
+        "\"esc exit\""
+      ],
+      [
+        "contains",
+        "\"\u2303c exit\""
+      ],
+      [
+        "contains",
+        "\"esc clear search\""
+      ],
+      [
+        "contains",
+        "\"\u2303o dense view\""
+      ],
+      [
+        "contains",
+        "\"\u2303t transcript\""
+      ],
+      [
+        "contains",
+        "\"\u2303e expand\""
+      ],
+      [
+        "contains",
+        "\"\u2303h/\u2303l change option\""
+      ],
+      [
+        "contains",
+        "\"change option\""
+      ],
+      [
+        "contains",
+        "\"\u2303o comfortable view\""
+      ],
+      [
+        "contains",
+        "\"esc new\""
+      ],
+      [
+        "contains",
+        "\"tab focus\""
+      ],
+      [
+        "contains",
+        "\"\u2190/\u2192 option\""
+      ],
+      [
+        "contains",
+        "\"\u2303o dense\""
+      ],
+      [
+        "contains",
+        "\"\u2303t preview\""
+      ],
+      [
+        "contains",
+        "\"\u2303e exp\""
+      ],
+      [
+        "contains",
+        "\"focus sort/filter\""
+      ],
+      [
+        "contains",
+        "\"loading transcript\""
+      ],
+      [
+        "contains",
+        "\"\u2303c quit\""
+      ],
+      [
+        "contains",
+        "\"enter\""
+      ],
+      [
+        "contains",
+        "\"BAtail\""
+      ],
+      [
+        "contains",
+        "\"Failed to save view mode\""
+      ],
+      [
+        "contains",
+        "\"Filter: Cwd \""
+      ],
+      [
+        "contains",
+        "\" Active \""
+      ],
+      [
+        "contains",
+        "\"Sort: Updated \""
+      ],
+      [
+        "contains",
+        "\"Named session\""
+      ],
+      [
+        "contains",
+        "\"Raw conversation preview\""
+      ],
+      [
+        "contains",
+        "\"\u2193 more\""
+      ],
+      [
+        "contains",
+        "\"\u2193 more\""
+      ],
+      [
+        "contains",
+        "\"hello from user\""
+      ],
+      [
+        "contains",
+        "\"hello from assistant\""
+      ],
+      [
+        "contains",
+        "\"Proposed Plan\""
+      ],
+      [
+        "contains",
+        "\"Do the thing\""
+      ],
+      [
+        "contains",
+        "\"private raw chain of thought\""
+      ],
+      [
+        "contains",
+        "\"private raw chain of thought\""
+      ]
+    ],
+    "codex-rs/tui/src/mention_codec.rs": [
+      [
+        "starts_with",
+        "\"plugin://\""
+      ],
+      [
+        "starts_with",
+        "\"app://\""
+      ],
+      [
+        "starts_with",
+        "\"mcp://\""
+      ],
+      [
+        "starts_with",
+        "\"plugin://\""
+      ],
+      [
+        "starts_with",
+        "\"skill://\""
+      ]
+    ],
+    "codex-rs/tui/src/get_git_diff.rs": [
+      [
+        "strip_suffix",
+        "\".clean\""
+      ],
+      [
+        "strip_suffix",
+        "\".process\""
+      ],
+      [
+        "contains",
+        "\"before\""
+      ],
+      [
+        "contains",
+        "\"after\""
+      ]
+    ],
+    "codex-rs/tui/src/task_mentions.rs": [
+      [
+        "strip_prefix",
+        "\"thread://\""
+      ],
+      [
+        "strip_prefix",
+        "\"[@\""
+      ],
+      [
+        "contains",
+        "\"thread://\""
+      ]
+    ],
+    "codex-rs/tui/src/wrapping.rs": [
+      [
+        "contains",
+        "\"://\""
+      ],
+      [
+        "split_once",
+        "\"://\""
+      ],
+      [
+        "starts_with",
+        "\"www.\""
+      ],
+      [
+        "starts_with",
+        "\"- \""
+      ],
+      [
+        "starts_with",
+        "\"  \""
+      ],
+      [
+        "starts_with",
+        "\"  \""
+      ],
+      [
+        "starts_with",
+        "\"hello\""
+      ],
+      [
+        "starts_with",
+        "\"    \""
+      ],
+      [
+        "starts_with",
+        "\"- \""
+      ],
+      [
+        "starts_with",
+        "\"  \""
+      ],
+      [
+        "contains",
+        "\"https://ex.com\""
+      ],
+      [
+        "strip_prefix",
+        "\"- \""
+      ]
+    ],
+    "codex-rs/tui/src/session_queue_commands.rs": [
+      [
+        "starts_with",
+        "\"Invalid request: unknown variant `thread/queue/add`\""
+      ]
+    ],
+    "codex-rs/tui/src/clipboard_copy.rs": [
+      [
+        "trim_start_matches",
+        "\"\\u{1b}]52;c;\""
+      ]
+    ],
+    "codex-rs/tui/src/status_indicator_widget.rs": [
+      [
+        "starts_with",
+        "\"Working (0s \u2022 esc to interrupt)\""
+      ],
+      [
+        "ends_with",
+        "\"\u2026\""
+      ]
+    ],
+    "codex-rs/tui/src/inline_visualization.rs": [
+      [
+        "strip_prefix",
+        "\"file=\\\"\""
+      ]
+    ],
+    "codex-rs/tui/src/markdown_render.rs": [
+      [
+        "ends_with",
+        "\"  \\n\""
+      ],
+      [
+        "ends_with",
+        "\"  \\r\\n\""
+      ]
+    ],
+    "codex-rs/tui/src/insert_history.rs": [
+      [
+        "contains",
+        "\"\u2502 http://a-long-url.com\""
+      ],
+      [
+        "contains",
+        "\"\u2502 example.test/api/v1/projects\""
+      ],
+      [
+        "starts_with",
+        "\"\u203a \""
+      ],
+      [
+        "starts_with",
+        "\"  \""
+      ],
+      [
+        "strip_prefix",
+        "\"\u203a \""
+      ],
+      [
+        "contains",
+        "\"\u2502 see\""
+      ],
+      [
+        "contains",
+        "\"tail words\""
+      ],
+      [
+        "contains",
+        "\"prose to force another\""
+      ],
+      [
+        "starts_with",
+        "\"  \""
+      ],
+      [
+        "contains",
+        "\"tests code block scrolling\""
+      ],
+      [
+        "starts_with",
+        "\"      \""
+      ],
+      [
+        "contains",
+        "\"tail-must-remain\""
+      ],
+      [
+        "contains",
+        "\"tail-must-remain\""
+      ],
+      [
+        "contains",
+        "\"tail-must-remain\""
+      ],
+      [
+        "contains",
+        "\"tail-must-remain\""
+      ],
+      [
+        "contains",
+        "\"\u2502 example.test/api\""
+      ],
+      [
+        "contains",
+        "\"/v1/short\""
+      ],
+      [
+        "contains",
+        "\"short\""
+      ],
+      [
+        "contains",
+        "\"Write a long URL as output for testing\""
+      ],
+      [
+        "contains",
+        "\"\u2022 https://example.test/api\""
+      ]
+    ],
+    "codex-rs/tui/src/permission_discovery.rs": [
+      [
+        "contains",
+        "\"permissionProfile/list\""
+      ],
+      [
+        "contains",
+        "\"configRequirements/read\""
+      ],
+      [
+        "contains",
+        "\"config/read\""
+      ]
+    ],
+    "codex-rs/tui/src/config_update.rs": [
+      [
+        "split_once",
+        "\", add \""
+      ],
+      [
+        "rsplit_once",
+        "\" as a trusted project in \""
+      ],
+      [
+        "strip_suffix",
+        "\"/.codex\""
+      ],
+      [
+        "strip_suffix",
+        "\"\\\\.codex\""
+      ],
+      [
+        "starts_with",
+        "\" is marked as untrusted\""
+      ],
+      [
+        "contains",
+        "\"config/read\""
+      ],
+      [
+        "contains",
+        "\"unknown variant\""
+      ],
+      [
+        "contains",
+        "\"unknown method\""
+      ]
+    ],
+    "codex-rs/tui/src/live_wrap.rs": [
+      [
+        "starts_with",
+        "\"world\""
+      ]
+    ],
+    "codex-rs/tui/src/clipboard_paste.rs": [
+      [
+        "contains",
+        "\"microsoft\""
+      ],
+      [
+        "contains",
+        "\"wsl\""
+      ],
+      [
+        "starts_with",
+        "\"\\\\\\\\\""
+      ],
+      [
+        "starts_with",
+        "\"\\\\\\\\\""
+      ]
+    ],
+    "codex-rs/tui/src/markdown_stream.rs": [
+      [
+        "contains",
+        "\"Third level (ordered)\""
+      ],
+      [
+        "contains",
+        "\"```\""
+      ]
+    ],
+    "codex-rs/tui/src/app_server_session.rs": [
+      [
+        "contains",
+        "\"paginated\""
+      ],
+      [
+        "contains",
+        "\"already has an active writer\""
+      ],
+      [
+        "ends_with",
+        "\"@openai.com\""
+      ]
+    ],
+    "codex-rs/tui/src/update_versions.rs": [
+      [
+        "strip_prefix",
+        "\"rust-v\""
+      ]
+    ],
+    "codex-rs/tui/src/model_migration.rs": [
+      [
+        "contains",
+        "\"tail42\""
+      ],
+      [
+        "contains",
+        "\"\u203a 2. Use existing model\""
+      ],
+      [
+        "contains",
+        "\"enter/esc confirm\""
+      ]
+    ],
+    "codex-rs/tui/src/markdown_copy.rs": [
+      [
+        "starts_with",
+        "\"  \\n\""
+      ],
+      [
+        "contains",
+        "\"> \""
+      ],
+      [
+        "contains",
+        "\"[x] \""
+      ],
+      [
+        "contains",
+        "\"[ ] \""
+      ],
+      [
+        "ends_with",
+        "\"[ ] \""
+      ],
+      [
+        "ends_with",
+        "\"[x] \""
+      ]
+    ],
+    "codex-rs/tui/src/keymap.rs": [
+      [
+        "contains",
+        "\"composer.submit\""
+      ],
+      [
+        "contains",
+        "\"open_transcript\""
+      ],
+      [
+        "contains",
+        "\"composer.queue\""
+      ],
+      [
+        "contains",
+        "\"open_external_editor\""
+      ],
+      [
+        "contains",
+        "\"composer.toggle_shortcuts\""
+      ],
+      [
+        "contains",
+        "\"open_transcript\""
+      ],
+      [
+        "contains",
+        "\"composer.submit\""
+      ],
+      [
+        "contains",
+        "\"editor.insert_newline\""
+      ],
+      [
+        "contains",
+        "\"copy\""
+      ],
+      [
+        "contains",
+        "\"editor.yank\""
+      ],
+      [
+        "contains",
+        "\"approval.approve\""
+      ],
+      [
+        "contains",
+        "\"open_transcript\""
+      ],
+      [
+        "contains",
+        "\"list.move_down\""
+      ],
+      [
+        "contains",
+        "\"copy\""
+      ],
+      [
+        "contains",
+        "\"tui.keymap.composer.submit\""
+      ],
+      [
+        "contains",
+        "\"tui.keymap.global.open_transcript\""
+      ],
+      [
+        "contains",
+        "\"tui.keymap.global.open_external_editor\""
+      ],
+      [
+        "contains",
+        "\"printable keys\""
+      ],
+      [
+        "contains",
+        "\"tui.keymap.global.copy\""
+      ],
+      [
+        "contains",
+        "\"suspend\""
+      ],
+      [
+        "contains",
+        "\"suspend\""
+      ],
+      [
+        "contains",
+        "\"backspace\""
+      ],
+      [
+        "contains",
+        "\"AltGr\""
+      ],
+      [
+        "contains",
+        "\"backspace\""
+      ]
+    ],
+    "codex-rs/tui/src/tooltips.rs": [
+      [
+        "split_once",
+        "\"{key:\""
+      ],
+      [
+        "contains",
+        "\"desktop app\""
+      ]
+    ],
+    "codex-rs/tui/src/cwd_prompt.rs": [
+      [
+        "contains",
+        "\"\u203a 4. Always use current directory\""
+      ],
+      [
+        "contains",
+        "\"esc use session\""
+      ]
+    ],
+    "codex-rs/tui/src/npm_registry.rs": [
+      [
+        "contains",
+        "\"latest dist-tag\""
+      ],
+      [
+        "contains",
+        "\"missing dist metadata\""
+      ]
+    ],
+    "codex-rs/tui/src/daemon_startup.rs": [
+      [
+        "strip_prefix",
+        "\"features.\""
+      ],
+      [
+        "contains",
+        "\"configRequirements/read\""
+      ],
+      [
+        "contains",
+        "\"unknown variant\""
+      ],
+      [
+        "contains",
+        "\"unknown method\""
+      ]
+    ],
+    "codex-rs/tui/src/diff_render.rs": [
+      [
+        "contains",
+        "\"world\""
+      ],
+      [
+        "contains",
+        "\"world\""
+      ]
+    ],
+    "codex-rs/tui/src/custom_terminal.rs": [
+      [
+        "strip_prefix",
+        "\"\\x1b]8;;\""
+      ],
+      [
+        "strip_suffix",
+        "\"\\x1b]8;;\\x07\""
+      ],
+      [
+        "contains",
+        "\"t=f\""
+      ],
+      [
+        "contains",
+        "\"C=1\""
+      ],
+      [
+        "contains",
+        "\"probe-08tcleantwords\""
+      ]
+    ],
+    "codex-rs/tui/src/update_prompt.rs": [
+      [
+        "contains",
+        "\"\u203a 3. Skip until next version\""
+      ],
+      [
+        "contains",
+        "\"enter continue \u00b7 esc skip\""
+      ]
+    ],
+    "codex-rs/tui/src/theme_picker.rs": [
+      [
+        "starts_with",
+        "\"  31  fn summarize\""
+      ],
+      [
+        "starts_with",
+        "\"12  fn greet\""
+      ],
+      [
+        "contains",
+        "\"~\""
+      ],
+      [
+        "contains",
+        "\"directory\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/settings.rs": [
+      [
+        "starts_with",
+        "\"codex-auto-\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/model_popups.rs": [
+      [
+        "starts_with",
+        "\"codex-auto-\""
+      ],
+      [
+        "starts_with",
+        "\"gpt-5.1-codex\""
+      ],
+      [
+        "starts_with",
+        "\"gpt-5.1-codex-max\""
+      ],
+      [
+        "starts_with",
+        "\"gpt-5.2\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/realtime.rs": [
+      [
+        "strip_prefix",
+        "\"<realtime_delegation>\""
+      ],
+      [
+        "strip_suffix",
+        "\"</realtime_delegation>\""
+      ],
+      [
+        "split_once",
+        "\"<input>\""
+      ],
+      [
+        "split_once",
+        "\"</input>\""
+      ],
+      [
+        "starts_with",
+        "\"[ANALYSIS]\""
+      ],
+      [
+        "starts_with",
+        "\"[COMMENTARY]\""
+      ],
+      [
+        "contains",
+        "\"<source>transcript_tail_flush</source>\""
+      ],
+      [
+        "strip_prefix",
+        "\"[FINAL]\""
+      ],
+      [
+        "strip_prefix",
+        "\"[FINAL]\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/status_state.rs": [
+      [
+        "starts_with",
+        "\"Reviewing \""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/status_surfaces.rs": [
+      [
+        "strip_prefix",
+        "\"read-only\""
+      ],
+      [
+        "contains",
+        "\"(network access enabled)\""
+      ],
+      [
+        "strip_prefix",
+        "\"workspace-write\""
+      ],
+      [
+        "contains",
+        "\"(network access enabled)\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/skills.rs": [
+      [
+        "starts_with",
+        "\"app://\""
+      ],
+      [
+        "starts_with",
+        "\"mcp://\""
+      ],
+      [
+        "starts_with",
+        "\"plugin://\""
+      ],
+      [
+        "strip_prefix",
+        "\"skill://\""
+      ],
+      [
+        "strip_prefix",
+        "\"app://\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/input_submission.rs": [
+      [
+        "strip_prefix",
+        "\"skill://\""
+      ],
+      [
+        "strip_prefix",
+        "\"plugin://\""
+      ],
+      [
+        "strip_prefix",
+        "\"app://\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/protocol.rs": [
+      [
+        "starts_with",
+        "\"Automatic approval review approved (\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/reasoning_shortcuts.rs": [
+      [
+        "starts_with",
+        "\"codex-auto-\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/user_messages.rs": [
+      [
+        "strip_prefix",
+        "\"plugin://\""
+      ],
+      [
+        "starts_with",
+        "\"app://\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/streaming.rs": [
+      [
+        "starts_with",
+        "\"<!--\""
+      ],
+      [
+        "strip_prefix",
+        "\"**\""
+      ],
+      [
+        "split_once",
+        "\"**\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/slash_command_args.rs": [
+      [
+        "starts_with",
+        "\"--\""
+      ],
+      [
+        "trim_start_matches",
+        "\"--\""
+      ],
+      [
+        "starts_with",
+        "\"--\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/turn_runtime.rs": [
+      [
+        "starts_with",
+        "\"This request has been flagged for possible biological risk.\""
+      ]
+    ],
+    "codex-rs/tui/src/analytics/normalize.rs": [
+      [
+        "starts_with",
+        "\"work_\""
+      ]
+    ],
+    "codex-rs/tui/src/app_server_session/thread_list.rs": [
+      [
+        "contains",
+        "\"invalid type: sequence\""
+      ],
+      [
+        "contains",
+        "\"expected a string\""
+      ]
+    ],
+    "codex-rs/tui/src/app/transcript_export.rs": [
+      [
+        "strip_prefix",
+        "\"~\""
+      ]
+    ],
+    "codex-rs/tui/src/app/app_server_thread_ownership.rs": [
+      [
+        "starts_with",
+        "\"thread not found:\""
+      ],
+      [
+        "starts_with",
+        "\"thread not loaded:\""
+      ]
+    ],
+    "codex-rs/tui/src/app/background_requests.rs": [
+      [
+        "contains",
+        "\"api key auth is not supported\""
+      ],
+      [
+        "contains",
+        "\"authentication required\""
+      ],
+      [
+        "contains",
+        "\"not signed in\""
+      ],
+      [
+        "contains",
+        "\"not logged in\""
+      ],
+      [
+        "contains",
+        "\"codex plugins are disabled\""
+      ],
+      [
+        "contains",
+        "\"plugin sharing is disabled\""
+      ],
+      [
+        "contains",
+        "\"plugin sharing is not enabled\""
+      ],
+      [
+        "contains",
+        "\"feature disabled\""
+      ],
+      [
+        "contains",
+        "\"workspace\""
+      ],
+      [
+        "contains",
+        "\"access\""
+      ],
+      [
+        "contains",
+        "\"mismatch\""
+      ],
+      [
+        "contains",
+        "\"not found\""
+      ],
+      [
+        "contains",
+        "\"status 404\""
+      ],
+      [
+        "contains",
+        "\"old build\""
+      ],
+      [
+        "contains",
+        "\"update codex\""
+      ],
+      [
+        "contains",
+        "\"stale\""
+      ],
+      [
+        "contains",
+        "\"service unavailable\""
+      ],
+      [
+        "contains",
+        "\"temporarily unavailable\""
+      ],
+      [
+        "contains",
+        "\"status 503\""
+      ],
+      [
+        "contains",
+        "\"failed to send\""
+      ],
+      [
+        "contains",
+        "\"request\""
+      ],
+      [
+        "contains",
+        "\"status\""
+      ],
+      [
+        "contains",
+        "\"disabled by admin\""
+      ],
+      [
+        "contains",
+        "\"admin disabled\""
+      ],
+      [
+        "contains",
+        "\"plugin\""
+      ],
+      [
+        "contains",
+        "\"disabled\""
+      ],
+      [
+        "starts_with",
+        "\"./\""
+      ],
+      [
+        "starts_with",
+        "\"../\""
+      ],
+      [
+        "starts_with",
+        "\".\\\\\""
+      ],
+      [
+        "starts_with",
+        "\"..\\\\\""
+      ]
+    ],
+    "codex-rs/tui/src/app/side.rs": [
+      [
+        "contains",
+        "\"Side conversation boundary.\""
+      ],
+      [
+        "contains",
+        "\"Everything before this boundary is inherited history\""
+      ],
+      [
+        "contains",
+        "\"It is not your current task.\""
+      ],
+      [
+        "contains",
+        "\"Only messages submitted after this boundary are active\""
+      ],
+      [
+        "contains",
+        "\"Do not continue, execute, or complete\""
+      ],
+      [
+        "contains",
+        "\"separate from the main thread\""
+      ],
+      [
+        "contains",
+        "\"External tools may be available according to this thread's current\""
+      ],
+      [
+        "contains",
+        "\"Any tool calls or outputs visible before this boundary happened\""
+      ],
+      [
+        "contains",
+        "\"Sub-agents are off-limits in this side conversation.\""
+      ],
+      [
+        "contains",
+        "\"Do not modify files\""
+      ],
+      [
+        "contains",
+        "\"Existing developer policy.\""
+      ],
+      [
+        "contains",
+        "\"You are in a side conversation, not the main thread.\""
+      ],
+      [
+        "contains",
+        "\"Sub-agents are off-limits in this side conversation.\""
+      ],
+      [
+        "contains",
+        "\"no rollout found for thread id\""
+      ],
+      [
+        "contains",
+        "\"includeTurns is unavailable before first user message\""
+      ]
+    ],
+    "codex-rs/tui/src/app/realtime_delivery.rs": [
+      [
+        "strip_prefix",
+        "\"[FINAL]\""
+      ]
+    ],
+    "codex-rs/tui/src/app/config_persistence.rs": [
+      [
+        "starts_with",
+        "\"codex-auto-\""
+      ]
+    ],
+    "codex-rs/tui/src/app/connector_mentions.rs": [
+      [
+        "contains",
+        "\"app/installed\""
+      ],
+      [
+        "contains",
+        "\"unknown variant\""
+      ],
+      [
+        "contains",
+        "\"unknown method\""
+      ]
+    ],
+    "codex-rs/tui/src/app/agents_overview_discovery.rs": [
+      [
+        "contains",
+        "\"recency_at\""
+      ]
+    ],
+    "codex-rs/tui/src/app/managed_worktree_creation.rs": [
+      [
+        "contains",
+        "\"thread/backgroundTerminals/list\""
+      ],
+      [
+        "contains",
+        "\"unknown variant\""
+      ],
+      [
+        "contains",
+        "\"unknown method\""
+      ]
+    ],
+    "codex-rs/tui/src/app/thread_goal_actions.rs": [
+      [
+        "contains",
+        "\"ephemeral thread does not support goals\""
+      ],
+      [
+        "contains",
+        "\"thread goals require a persisted thread; this thread is ephemeral\""
+      ]
+    ],
+    "codex-rs/tui/src/app/session_lifecycle.rs": [
+      [
+        "contains",
+        "\"thread not loaded:\""
+      ],
+      [
+        "contains",
+        "\"includeTurns is unavailable before first user message\""
+      ],
+      [
+        "contains",
+        "\"thread/turns/list is unavailable before first user message\""
+      ],
+      [
+        "contains",
+        "\"ephemeral threads do not support includeTurns\""
+      ]
+    ],
+    "codex-rs/tui/src/tui/keyboard_modes.rs": [
+      [
+        "strip_prefix",
+        "\"TERM_PROGRAM=\""
+      ]
+    ],
+    "codex-rs/tui/src/keymap_setup/actions.rs": [
+      [
+        "strip_prefix",
+        "\"leader \""
+      ]
+    ],
+    "codex-rs/tui/src/keymap/chords.rs": [
+      [
+        "starts_with",
+        "\"leader \""
+      ],
+      [
+        "strip_prefix",
+        "\"leader \""
+      ]
+    ],
+    "codex-rs/tui/src/onboarding/onboarding_screen.rs": [
+      [
+        "contains",
+        "\"app server unavailable\""
+      ]
+    ],
+    "codex-rs/tui/src/onboarding/bedrock.rs": [
+      [
+        "starts_with",
+        "\"> \""
+      ]
+    ],
+    "codex-rs/tui/src/pets/frames.rs": [
+      [
+        "starts_with",
+        "\"frame_\""
+      ],
+      [
+        "ends_with",
+        "\".png\""
+      ]
+    ],
+    "codex-rs/tui/src/pets/model.rs": [
+      [
+        "starts_with",
+        "\"~/\""
+      ],
+      [
+        "starts_with",
+        "\"../\""
+      ],
+      [
+        "starts_with",
+        "\"./\""
+      ],
+      [
+        "starts_with",
+        "\"~/\""
+      ],
+      [
+        "contains",
+        "\"spritesheet path must stay inside\""
+      ],
+      [
+        "contains",
+        "\"pet frame dimensions and grid counts must be non-zero\""
+      ],
+      [
+        "contains",
+        "\"pet frame grid must cover spritesheet exactly\""
+      ],
+      [
+        "contains",
+        "\"exceeds maximum\""
+      ],
+      [
+        "contains",
+        "\"animation idle must include at least one frame\""
+      ],
+      [
+        "contains",
+        "\"animation idle references sprite index 72\""
+      ],
+      [
+        "contains",
+        "\"animation idle fps must be finite and between\""
+      ],
+      [
+        "contains",
+        "\"animation wave fallback missing does not exist\""
+      ]
+    ],
+    "codex-rs/tui/src/pets/image_protocol.rs": [
+      [
+        "starts_with",
+        "\"\\x1b_Ga=T,t=d,f=100,c=4,r=3,q=2,m=0,C=1;\""
+      ],
+      [
+        "contains",
+        "\"cG5n\""
+      ],
+      [
+        "ends_with",
+        "\"\\x1b\\\\\""
+      ],
+      [
+        "starts_with",
+        "\"\\x1bP9;1;0q\\\"1;1;1;1\""
+      ],
+      [
+        "contains",
+        "\"#224;2;100;0;0\""
+      ],
+      [
+        "contains",
+        "\"#224@\""
+      ],
+      [
+        "ends_with",
+        "\"\\x1b\\\\\""
+      ]
+    ],
+    "codex-rs/tui/src/pets/mod.rs": [
+      [
+        "contains",
+        "\"Ga=d,d=I,i=49374,q=2;\""
+      ],
+      [
+        "contains",
+        "\"\\x1b7\""
+      ],
+      [
+        "contains",
+        "\"\\x1b[\""
+      ],
+      [
+        "contains",
+        "\"\\x1b8\""
+      ],
+      [
+        "contains",
+        "\"a=d,d=I,i=49374,q=2;\""
+      ],
+      [
+        "contains",
+        "\"\\x1b[4;3H\""
+      ],
+      [
+        "contains",
+        "\"a=T,t=f,f=100,c=4,r=2,q=2,i=49374,C=1;\""
+      ],
+      [
+        "contains",
+        "\"cG5n\""
+      ],
+      [
+        "contains",
+        "\"\\x1b8\""
+      ],
+      [
+        "contains",
+        "\"\\x1b[2;3H    \\x1b[3;3H    \\x1b[4;3H    \\x1b[5;3H    \\x1b[4;3H\""
+      ],
+      [
+        "contains",
+        "\"fake-sixel\""
+      ],
+      [
+        "contains",
+        "\"\\x1b8\""
+      ],
+      [
+        "contains",
+        "\"Ga=d,d=I,i=49374,q=2;\""
+      ],
+      [
+        "contains",
+        "\"\\x1b7\""
+      ],
+      [
+        "contains",
+        "\"\\x1b[2;3H    \\x1b[3;3H    \\x1b[4;3H    \\x1b[5;3H    \""
+      ],
+      [
+        "contains",
+        "\"\\x1b8\""
+      ],
+      [
+        "contains",
+        "\"fake-sixel\""
+      ]
+    ],
+    "codex-rs/tui/src/pets/sixel.rs": [
+      [
+        "contains",
+        "\"#224!4@\""
+      ]
+    ],
+    "codex-rs/tui/src/clipboard_copy/tmux.rs": [
+      [
+        "split_once",
+        "\"Ms: (string) \""
+      ]
+    ],
+    "codex-rs/tui/src/markdown_render/math.rs": [
+      [
+        "contains",
+        "\"\\\\(\""
+      ],
+      [
+        "contains",
+        "\"\\\\[\""
+      ],
+      [
+        "starts_with",
+        "\"$$\""
+      ],
+      [
+        "starts_with",
+        "\"\\\\[\""
+      ],
+      [
+        "starts_with",
+        "\"\\\\(\""
+      ]
+    ],
+    "codex-rs/tui/src/markdown_render/inline_directives.rs": [
+      [
+        "contains",
+        "\":codex-followup[\""
+      ],
+      [
+        "contains",
+        "\"codex-file-citation\""
+      ],
+      [
+        "contains",
+        "\":codex-followup[\""
+      ],
+      [
+        "starts_with",
+        "\"codex-file-citation{\""
+      ],
+      [
+        "starts_with",
+        "\":codex-followup[\""
+      ]
+    ],
+    "codex-rs/tui/src/markdown_render/local_links.rs": [
+      [
+        "starts_with",
+        "\"file://\""
+      ],
+      [
+        "starts_with",
+        "\"~/\""
+      ],
+      [
+        "starts_with",
+        "\"./\""
+      ],
+      [
+        "starts_with",
+        "\"../\""
+      ],
+      [
+        "starts_with",
+        "\"\\\\\\\\\""
+      ],
+      [
+        "starts_with",
+        "\"file://\""
+      ],
+      [
+        "strip_prefix",
+        "\"\\\\\\\\\""
+      ],
+      [
+        "starts_with",
+        "\"//\""
+      ]
+    ],
+    "codex-rs/tui/src/markdown_render/task_lists.rs": [
+      [
+        "strip_suffix",
+        "\"\u2022 \""
+      ]
+    ],
+    "codex-rs/tui/src/markdown_render/web_links.rs": [
+      [
+        "starts_with",
+        "\"screen\""
+      ],
+      [
+        "starts_with",
+        "\"tmux\""
+      ]
+    ],
+    "codex-rs/tui/src/exec_cell/render.rs": [
+      [
+        "contains",
+        "\"\u2026 +\""
+      ],
+      [
+        "contains",
+        "\"\u2026 +6 lines (\u2303t to view transcript)\""
+      ]
+    ],
+    "codex-rs/tui/src/render/highlight.rs": [
+      [
+        "contains",
+        "\"my-fancy\""
+      ],
+      [
+        "contains",
+        "\"could not be loaded\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/file_search_popup.rs": [
+      [
+        "contains",
+        "\"parser_alpha.rs\""
+      ],
+      [
+        "contains",
+        "\"parser_beta.rs\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/skill_popup.rs": [
+      [
+        "contains",
+        "\"[App]\""
+      ],
+      [
+        "contains",
+        "\"[Skill]\""
+      ],
+      [
+        "contains",
+        "\"Secondary details\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/pending_input_preview.rs": [
+      [
+        "contains",
+        "\"\\x1b]8;;\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/command_popup.rs": [
+      [
+        "starts_with",
+        "\"debug\""
+      ],
+      [
+        "contains",
+        "\"/tier-two\""
+      ],
+      [
+        "contains",
+        "\"Keep default speed\""
+      ],
+      [
+        "starts_with",
+        "\"debug\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/app_link_view.rs": [
+      [
+        "ends_with",
+        "\".chatgpt.com\""
+      ],
+      [
+        "ends_with",
+        "\".chatgpt-staging.com\""
+      ],
+      [
+        "contains",
+        "\"tail42\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/hooks_browser_view.rs": [
+      [
+        "contains",
+        "\"enter details\""
+      ],
+      [
+        "starts_with",
+        "\"\u203a \""
+      ],
+      [
+        "contains",
+        "\"Interrupt\""
+      ],
+      [
+        "contains",
+        "\"Active/Installed\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/selection_popup_common.rs": [
+      [
+        "contains",
+        "\"Details\""
+      ],
+      [
+        "contains",
+        "\"Unavailable\""
+      ],
+      [
+        "contains",
+        "\"Blocked (disabled)\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/mod.rs": [
+      [
+        "contains",
+        "\"Working\""
+      ],
+      [
+        "contains",
+        "\"Fix login timeout\""
+      ],
+      [
+        "contains",
+        "\"Ready\""
+      ],
+      [
+        "contains",
+        "\"Loading\""
+      ],
+      [
+        "contains",
+        "\"Working\""
+      ],
+      [
+        "contains",
+        "\"Ask Codex\""
+      ],
+      [
+        "contains",
+        "\"\u2022 Working\""
+      ],
+      [
+        "contains",
+        "\"background terminal running \u00b7 /ps to view\""
+      ],
+      [
+        "contains",
+        "\"[Image #1]\""
+      ],
+      [
+        "contains",
+        "\"[Image #2]\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/feedback_view.rs": [
+      [
+        "contains",
+        "\"Please open an issue using the following URL:\""
+      ],
+      [
+        "contains",
+        "\"thread-4\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/status_line_setup.rs": [
+      [
+        "contains",
+        "\"Use theme colors\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/multi_select_picker.rs": [
+      [
+        "contains",
+        "\"\u203a [ ] field-11\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/approval_overlay.rs": [
+      [
+        "strip_prefix",
+        "\"network-access \""
+      ],
+      [
+        "contains",
+        "\"\\x1b]8;;\""
+      ],
+      [
+        "contains",
+        "\"echo hello world\""
+      ],
+      [
+        "contains",
+        "\"Permission rule:\""
+      ],
+      [
+        "contains",
+        "\"network;\""
+      ],
+      [
+        "contains",
+        "\"Thread: Banach [worker]\""
+      ],
+      [
+        "contains",
+        "\"Description: Apply proposed file edits\""
+      ],
+      [
+        "contains",
+        "\"o to open thread\""
+      ],
+      [
+        "contains",
+        "\"$ apply_patch\""
+      ],
+      [
+        "contains",
+        "\"Do you want to approve network access to \\\"example.com\\\"?\""
+      ],
+      [
+        "contains",
+        "\"$ curl\""
+      ],
+      [
+        "contains",
+        "\"don't ask again\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/list_selection_view.rs": [
+      [
+        "contains",
+        "\"Move up/down to live preview themes\""
+      ],
+      [
+        "contains",
+        "\"filters\""
+      ],
+      [
+        "contains",
+        "\"Alpha Item\""
+      ],
+      [
+        "contains",
+        "\"Beta Item\""
+      ],
+      [
+        "contains",
+        "\"\u2026\""
+      ],
+      [
+        "contains",
+        "\"\u203a 1. Alpha\""
+      ],
+      [
+        "contains",
+        "\"  2. Beta\""
+      ],
+      [
+        "contains",
+        "\"1. Unavailable\""
+      ],
+      [
+        "contains",
+        "\"3. Beta\""
+      ],
+      [
+        "contains",
+        "\"python -mpre_commit run\""
+      ],
+      [
+        "starts_with",
+        "\"     `python -mpre_commit run\""
+      ],
+      [
+        "contains",
+        "\"eslint-plugin/no-\""
+      ],
+      [
+        "contains",
+        "\"mixed-const-enum-exports.js\""
+      ],
+      [
+        "contains",
+        "\"3.\""
+      ],
+      [
+        "contains",
+        "\"3.\""
+      ],
+      [
+        "contains",
+        "\"9. Item 9 with an intentionally much longer name\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/status_surface_preview.rs": [
+      [
+        "starts_with",
+        "\"secondary usage \""
+      ],
+      [
+        "starts_with",
+        "\"usage \""
+      ],
+      [
+        "starts_with",
+        "\"5h \""
+      ],
+      [
+        "starts_with",
+        "\"daily \""
+      ],
+      [
+        "starts_with",
+        "\"weekly \""
+      ],
+      [
+        "starts_with",
+        "\"monthly \""
+      ],
+      [
+        "starts_with",
+        "\"annual \""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/slash_commands.rs": [
+      [
+        "strip_suffix",
+        "\"al\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/mcp_server_elicitation.rs": [
+      [
+        "contains",
+        "\"submit\""
+      ],
+      [
+        "contains",
+        "\"submit\""
+      ],
+      [
+        "contains",
+        "\"\\x1b]8;;\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/chat_composer.rs": [
+      [
+        "ends_with",
+        "\".png\""
+      ],
+      [
+        "ends_with",
+        "\".jpg\""
+      ],
+      [
+        "ends_with",
+        "\".jpeg\""
+      ],
+      [
+        "ends_with",
+        "\".gif\""
+      ],
+      [
+        "ends_with",
+        "\".webp\""
+      ],
+      [
+        "starts_with",
+        "\"plugin://\""
+      ],
+      [
+        "contains",
+        "\"? for shortcuts\""
+      ],
+      [
+        "contains",
+        "\"FLASH\""
+      ],
+      [
+        "contains",
+        "\"K label\""
+      ],
+      [
+        "contains",
+        "\"K label\""
+      ],
+      [
+        "contains",
+        "\"FLASH\""
+      ],
+      [
+        "contains",
+        "\"disabled while a task is in progress\""
+      ],
+      [
+        "starts_with",
+        "\"!ls\""
+      ],
+      [
+        "contains",
+        "\"[Image #1]\""
+      ],
+      [
+        "contains",
+        "\"[Image #2]\""
+      ],
+      [
+        "starts_with",
+        "\"[Image #1]\""
+      ],
+      [
+        "starts_with",
+        "\"[Image #1] \""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/footer.rs": [
+      [
+        "strip_prefix",
+        "\"Side \""
+      ],
+      [
+        "strip_prefix",
+        "\"\u25cf \""
+      ],
+      [
+        "contains",
+        "\"Plan mode\""
+      ],
+      [
+        "contains",
+        "\"\u21e7tab to cycle\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/skills_toggle_view.rs": [
+      [
+        "contains",
+        "\"\u2303t\""
+      ],
+      [
+        "contains",
+        "\"\u2303x\""
+      ],
+      [
+        "contains",
+        "\"enter\""
+      ],
+      [
+        "contains",
+        "\"esc\""
+      ]
+    ],
+    "codex-rs/tui/src/streaming/prose_preview.rs": [
+      [
+        "starts_with",
+        "\"```\""
+      ],
+      [
+        "starts_with",
+        "\"~~~\""
+      ],
+      [
+        "strip_suffix",
+        "\":codex-followup\""
+      ],
+      [
+        "strip_suffix",
+        "\":codex-followup\""
+      ]
+    ],
+    "codex-rs/tui/src/streaming/controller.rs": [
+      [
+        "starts_with",
+        "\"$$\""
+      ],
+      [
+        "starts_with",
+        "\"\\\\[\""
+      ],
+      [
+        "contains",
+        "\"# Heading\""
+      ],
+      [
+        "contains",
+        "\"partial\""
+      ],
+      [
+        "contains",
+        "\"second line\""
+      ],
+      [
+        "contains",
+        "\"second line\""
+      ],
+      [
+        "contains",
+        "\"Item without newline\""
+      ],
+      [
+        "contains",
+        "\"Intro line before table.\""
+      ],
+      [
+        "contains",
+        "\"[A][ref]\""
+      ],
+      [
+        "contains",
+        "\"alpha | beta\""
+      ],
+      [
+        "contains",
+        "\" Col A    Col B    Col C\""
+      ],
+      [
+        "contains",
+        "\"FIRSTTOKEN\""
+      ],
+      [
+        "contains",
+        "\"second line\""
+      ],
+      [
+        "contains",
+        "\"tail line\""
+      ],
+      [
+        "contains",
+        "\"kappa\""
+      ],
+      [
+        "contains",
+        "\"lambda\""
+      ],
+      [
+        "contains",
+        "\"mu\""
+      ]
+    ],
+    "codex-rs/tui/src/status/card.rs": [
+      [
+        "strip_prefix",
+        "\"read-only\""
+      ],
+      [
+        "contains",
+        "\"(network access enabled)\""
+      ],
+      [
+        "strip_prefix",
+        "\"workspace-write\""
+      ],
+      [
+        "contains",
+        "\"(network access enabled)\""
+      ],
+      [
+        "starts_with",
+        "\"workspace\""
+      ]
+    ],
+    "codex-rs/tui/src/status/helpers.rs": [
+      [
+        "ends_with",
+        "\"project.md\""
+      ]
+    ],
+    "codex-rs/tui/src/history_cell/mcp_result.rs": [
+      [
+        "strip_prefix",
+        "\"data:\""
+      ]
+    ],
+    "codex-rs/tui/src/history_cell/request_user_input.rs": [
+      [
+        "strip_prefix",
+        "\"user_note: \""
+      ]
+    ],
+    "codex-rs/tui/src/history_cell/computer_activity.rs": [
+      [
+        "starts_with",
+        "\"Script error:\""
+      ],
+      [
+        "strip_prefix",
+        "\"Script error:\""
+      ]
+    ],
+    "codex-rs/tui/src/history_cell/messages.rs": [
+      [
+        "strip_prefix",
+        "\"**\""
+      ],
+      [
+        "strip_prefix",
+        "\"**\""
+      ]
+    ],
+    "codex-rs/tui/src/history_cell/mcp_preview.rs": [
+      [
+        "starts_with",
+        "\"Script completed\\n\""
+      ],
+      [
+        "split_once",
+        "\"\\nOutput:\\n\""
+      ]
+    ],
+    "codex-rs/tui/src/history_cell/mcp.rs": [
+      [
+        "starts_with",
+        "\"Script completed\\n\""
+      ],
+      [
+        "split_once",
+        "\"\\nOutput:\\n\""
+      ]
+    ],
+    "codex-rs/tui/src/history_cell/async_questions.rs": [
+      [
+        "strip_prefix",
+        "\"- \""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/request_user_input/mod.rs": [
+      [
+        "contains",
+        "\"auto-resolves\""
+      ],
+      [
+        "contains",
+        "\"\u203a 3. Use Detailed Hint C\""
+      ],
+      [
+        "contains",
+        "\"\\x1b]8;;\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/mentions_v2/search_catalog.rs": [
+      [
+        "strip_prefix",
+        "\"app-\""
+      ]
+    ],
+    "codex-rs/tui/src/bottom_pane/chat_composer/paste_input.rs": [
+      [
+        "starts_with",
+        "\"> \""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/realtime_tests/handoffs.rs": [
+      [
+        "contains",
+        "\"The answer is 42.\""
+      ],
+      [
+        "contains",
+        "\"Earlier guess\""
+      ],
+      [
+        "contains",
+        "\"Spoken answer\""
+      ],
+      [
+        "contains",
+        "\"<realtime_delegation>\""
+      ],
+      [
+        "contains",
+        "\"secret\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/realtime_tests/caption_replay.rs": [
+      [
+        "contains",
+        "\"Checking the typed request\""
+      ],
+      [
+        "contains",
+        "\"Typed reasoning summary\""
+      ],
+      [
+        "contains",
+        "\"Private voice\""
+      ],
+      [
+        "contains",
+        "\"private\""
+      ],
+      [
+        "contains",
+        "\"Accepted answer\""
+      ],
+      [
+        "contains",
+        "\"New answer\""
+      ],
+      [
+        "contains",
+        "\"New answer\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/realtime_tests/speech_recovery.rs": [
+      [
+        "contains",
+        "\"Backend answer\""
+      ],
+      [
+        "contains",
+        "\"First answer\""
+      ],
+      [
+        "contains",
+        "\"Second answer\""
+      ],
+      [
+        "contains",
+        "\"Answer number 0\""
+      ],
+      [
+        "contains",
+        "\"private\""
+      ],
+      [
+        "contains",
+        "\"secret\""
+      ],
+      [
+        "contains",
+        "\"private\""
+      ],
+      [
+        "contains",
+        "\"ordinary summary\""
+      ],
+      [
+        "starts_with",
+        "\"word \""
+      ],
+      [
+        "contains",
+        "\"show <code> & tests\""
+      ],
+      [
+        "contains",
+        "\"realtime_delegation\""
+      ],
+      [
+        "contains",
+        "\"It is an XML element.\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/realtime_tests/handoff_privacy.rs": [
+      [
+        "contains",
+        "\"pick a random number\""
+      ],
+      [
+        "contains",
+        "\"73\""
+      ],
+      [
+        "contains",
+        "\"typed answer\""
+      ],
+      [
+        "contains",
+        "\"private voice commentary\""
+      ],
+      [
+        "contains",
+        "\"realtime_delegation\""
+      ],
+      [
+        "contains",
+        "\"Typed beginning and typed tail\""
+      ],
+      [
+        "contains",
+        "\"private after handoff\""
+      ],
+      [
+        "contains",
+        "\"Visible typed commentary\""
+      ],
+      [
+        "contains",
+        "\"Hidden voice commentary\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/realtime_tests/lifecycle.rs": [
+      [
+        "contains",
+        "\"side conversations\""
+      ],
+      [
+        "contains",
+        "\"device disconnected\""
+      ]
+    ],
+    "codex-rs/tui/src/chatwidget/realtime_tests/transcripts.rs": [
+      [
+        "contains",
+        "\"pick a number\""
+      ],
+      [
+        "contains",
+        "\"voice output\""
+      ],
+      [
+        "contains",
+        "\"partial words\""
+      ],
+      [
+        "contains",
+        "\"Hello there\""
+      ],
+      [
+        "contains",
+        "\"gate 73\""
+      ],
+      [
+        "contains",
+        "\"Keep these words visible.\""
+      ],
+      [
+        "contains",
+        "\"Keep these words visible.\""
+      ],
+      [
+        "contains",
+        "\"Keep these words visible.\""
+      ],
+      [
+        "contains",
+        "\"Keep these words visible please\""
+      ]
+    ],
+    "codex-rs/cli/src/main.rs": [
+      [
+        "starts_with",
+        "\"`--remote-auth-token-env` requires\""
+      ],
+      [
+        "contains",
+        "\"--not-so-yolo\""
+      ],
+      [
+        "split_once",
+        "\"Local server options (without --remote):\""
+      ],
+      [
+        "contains",
+        "\"--message <TEXT>\""
+      ],
+      [
+        "contains",
+        "\"--model\""
+      ],
+      [
+        "contains",
+        "\"-c model=\""
+      ],
+      [
+        "starts_with",
+        "\"  -\""
+      ],
+      [
+        "starts_with",
+        "\"      --\""
+      ],
+      [
+        "contains",
+        "\"tcp-tunnel\""
+      ],
+      [
+        "contains",
+        "\"Usage: codex plugin marketplace [OPTIONS] <COMMAND>\""
+      ],
+      [
+        "contains",
+        "\"--permission-profile\""
+      ],
+      [
+        "contains",
+        "\"--permissions-profile\""
+      ],
+      [
+        "contains",
+        "\"remote-control\""
+      ],
+      [
+        "contains",
+        "\"only supported for interactive TUI commands\""
+      ],
+      [
+        "contains",
+        "\"only supported for interactive TUI commands\""
+      ],
+      [
+        "contains",
+        "\"generate-internal-json-schema\""
+      ],
+      [
+        "contains",
+        "\"is not set\""
+      ],
+      [
+        "contains",
+        "\"is empty\""
+      ],
+      [
+        "contains",
+        "\"alice\""
+      ],
+      [
+        "contains",
+        "\"secret\""
+      ],
+      [
+        "contains",
+        "\"app-server proxy\""
+      ],
+      [
+        "contains",
+        "\"app-server daemon version\""
+      ]
+    ]
+  },
+  "assertions": "passed",
+  "nativeGoalRegressionTest": "goal_files::managed_compatibility_tests::saved_stock_goal_reference_remains_readable_and_owner_scoped"
+}

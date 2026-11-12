@@ -1,0 +1,792 @@
+{
+  "models": [
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 1048576,
+      "max_context_window": 1048576,
+      "max_output_tokens": 65536,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "gemini-4-carbon",
+      "display_name": "Google Carbon 4 (Management Preview)",
+      "description": "Managed preview with local coding tools and image input. Native Google Carbon is not yet available through this service. Execution follows your service routing and existing Google rate card.",
+      "default_reasoning_level": "medium",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday coding"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex work"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 0,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    },
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 272000,
+      "max_context_window": 272000,
+      "max_output_tokens": null,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "claude-opus-5-5",
+      "display_name": "Claude Opus 5.5",
+      "description": "Claude Opus 5.5 coding route with local coding tools and wallet billing.",
+      "default_reasoning_level": "xhigh",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday coding"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex work"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high visible reasoning setting for managed sessions"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth"
+        },
+        {
+          "effort": "ultra",
+          "description": "GPT-5.6 SOL Ultra visible reasoning mode"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 1,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    },
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 1050000,
+      "max_context_window": 1050000,
+      "max_output_tokens": 128000,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "gpt-6.1-sol",
+      "display_name": "ChatGPT 6.1 SOL",
+      "description": "ChatGPT 6.1 SOL: coding tools, image input, and Extra High reasoning by default.",
+      "default_reasoning_level": "xhigh",
+      "supported_reasoning_levels": [
+        {
+          "effort": "none",
+          "description": "Fastest responses without extended reasoning"
+        },
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday coding"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex work"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high visible reasoning setting for managed sessions"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 2,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    },
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 1048576,
+      "max_context_window": 1048576,
+      "max_output_tokens": 65536,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "gemini-4-argon",
+      "display_name": "Google Argon 4",
+      "description": "Google Argon 4 coding route with local coding tools, image input, and Low, Medium or High reasoning.",
+      "default_reasoning_level": "medium",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday coding"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex work"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 3,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    },
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 1048576,
+      "max_context_window": 1048576,
+      "max_output_tokens": 393216,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "deepseek-flash",
+      "display_name": "DeepSeek V4.1 Flash",
+      "description": "DeepSeek V4.1 Flash: local coding tools, image input, and None, Low, High or Max reasoning. Execution follows your service routing.",
+      "default_reasoning_level": "high",
+      "supported_reasoning_levels": [
+        {
+          "effort": "none",
+          "description": "Disable extended reasoning"
+        },
+        {
+          "effort": "low",
+          "description": "Light reasoning for quick tasks"
+        },
+        {
+          "effort": "high",
+          "description": "DeepSeek default reasoning for coding"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum DeepSeek reasoning effort"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 4,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    },
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 1050000,
+      "max_context_window": 1050000,
+      "max_output_tokens": 128000,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "gpt-6-sol",
+      "display_name": "ChatGPT-6-SOL",
+      "description": "ChatGPT-6-SOL: coding tools, image input, and reasoning from None through Max.",
+      "default_reasoning_level": "xhigh",
+      "supported_reasoning_levels": [
+        {
+          "effort": "none",
+          "description": "Fastest responses without extended reasoning"
+        },
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday coding"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex work"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high visible reasoning setting for managed sessions"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 5,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    },
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 1050000,
+      "max_context_window": 1050000,
+      "max_output_tokens": 128000,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "gpt-6-astra",
+      "display_name": "ChatGPT-6-Astra",
+      "description": "ChatGPT-6-Astra: coding tools, configurable reasoning, and image input.",
+      "default_reasoning_level": "xhigh",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday coding"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex work"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high visible reasoning setting for managed sessions"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 6,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    },
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 1000000,
+      "max_context_window": 1000000,
+      "max_output_tokens": 128000,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "claude-fable-5-2",
+      "display_name": "Fable 5.2",
+      "description": "Fable 5.2: coding tools and image input; Low, Medium, High, Extra High or Max reasoning. Execution follows your service routing and current Fable 5.2 rates.",
+      "default_reasoning_level": "high",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday coding"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex work"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high visible reasoning setting for managed sessions"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 7,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    },
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 272000,
+      "max_context_window": 272000,
+      "max_output_tokens": null,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "gpt-daybreak-blue-latest",
+      "display_name": "Daybreak Blue - Advanced Security",
+      "description": "ChatGPT Daybreak Blue coding route for broad defensive cybersecurity work with local coding tools and wallet billing.",
+      "default_reasoning_level": "xhigh",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday coding"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex work"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high visible reasoning setting for managed sessions"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth"
+        },
+        {
+          "effort": "ultra",
+          "description": "GPT-5.6 SOL Ultra visible reasoning mode"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 8,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    },
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 272000,
+      "max_context_window": 272000,
+      "max_output_tokens": null,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "claude-sonnet-5-5",
+      "display_name": "Sonnet 5.5",
+      "description": "Sonnet 5.5 coding route with local coding tools and wallet billing.",
+      "default_reasoning_level": "xhigh",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday coding"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex work"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high visible reasoning setting for managed sessions"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth"
+        },
+        {
+          "effort": "ultra",
+          "description": "GPT-5.6 SOL Ultra visible reasoning mode"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 9,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    },
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 272000,
+      "max_context_window": 272000,
+      "max_output_tokens": null,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "claude-fable-5",
+      "display_name": "Fable 5.1 (existing selection)",
+      "description": "Existing Fable 5.1 configuration retains its original model identity, rates and plan eligibility. Select Fable 5.2 explicitly to change models.",
+      "default_reasoning_level": "xhigh",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday coding"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex work"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high visible reasoning setting for managed sessions"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth"
+        },
+        {
+          "effort": "ultra",
+          "description": "GPT-5.6 SOL Ultra visible reasoning mode"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "hide",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 10,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    },
+    {
+      "prefer_websockets": false,
+      "support_verbosity": true,
+      "default_verbosity": "low",
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text_and_image",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "supports_image_detail_original": true,
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": true,
+      "context_window": 272000,
+      "max_context_window": 272000,
+      "max_output_tokens": null,
+      "auto_compact_token_limit": null,
+      "reasoning_summary_format": "experimental",
+      "default_reasoning_summary": "none",
+      "slug": "claude-fable-5-1",
+      "display_name": "Fable 5.1 (existing selection)",
+      "description": "Existing Fable 5.1 configuration retains its original model identity, rates and plan eligibility. Select Fable 5.2 explicitly to change models.",
+      "default_reasoning_level": "xhigh",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday coding"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex work"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high visible reasoning setting for managed sessions"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth"
+        },
+        {
+          "effort": "ultra",
+          "description": "GPT-5.6 SOL Ultra visible reasoning mode"
+        }
+      ],
+      "shell_type": "shell_command",
+      "visibility": "hide",
+      "minimal_client_version": "0.124.0",
+      "supported_in_api": true,
+      "availability_nux": null,
+      "upgrade": null,
+      "priority": 11,
+      "base_instructions": "You are Magnetapi Client, a coding agent running in the user's terminal. You share the user's local workspace, use local tools when available, and complete coding tasks directly and carefully. Follow the tool schema supplied by the client and keep CodexAPI.pro provider details out of user-facing answers unless the user asks about setup or billing.",
+      "model_messages": null,
+      "experimental_supported_tools": [],
+      "supports_search_tool": true,
+      "additional_speed_tiers": [
+        "fast"
+      ],
+      "service_tiers": [],
+      "supports_reasoning_summaries": true
+    }
+  ]
+}

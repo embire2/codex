@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "repository": "embire2/codex",
+  "branch": "magnetapi/coderx-01672-20261112",
+  "wrapperVersion": "2.0.48",
+  "runtimeVersion": "0.167.2",
+  "source": {
+    "tag": "rust-v0.167.2",
+    "commit": "ce21072c90d32c40af7a55b60b2fb35c84a43a6a",
+    "url": "https://codeload.github.com/openai/codex/tar.gz/refs/tags/rust-v0.167.2",
+    "sha256": "a2c669c56d42a9152edaa41f61572354113d03f8e2aa56dd4384ce4584d79289",
+    "bytes": 19101996
+  },
+  "patchSha256": "b97f6b5e3b51f377be2b5f5d5920e579ef7e96a40e5470379aee4e05aaf26ba0",
+  "upstreamLockSha256": "9e71c74824a7ea114d0a3a4c94e93d81a1ddd13ca8fa6f698cbd1284c2e9ff2f",
+  "normalizedLockSha256": "5e1781c98407bf0cbf67bb39a2dffffa6d2a259871a47fe99946de22c716a782",
+  "platforms": [
+    {
+      "id": "linux-x64",
+      "version": "0.167.2-linux-x64",
+      "integrity": "sha512-2Rw3VkWonMxwCSgOw+NkiKLOuOzyoQNWmxU7x8GniesdMfhKc4asNqOzTgQwJLKCrSlPc4/6fYTaH7fYcuGWGQ==",
+      "tarball": "https://registry.npmjs.org/@openai/codex/-/codex-0.167.2-linux-x64.tgz",
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "runner": "ubuntu-22.04",
+      "target": "x86_64-unknown-linux-musl"
+    },
+    {
+      "id": "linux-arm64",
+      "version": "0.167.2-linux-arm64",
+      "integrity": "sha512-x/PhPRq0X+hBZDqXKE0YIm4NZoSyCF99KcJJWRn0B2WNdmYk3eBDtjNO5+wl7zWMCBwjTOev5Tz2ZZ6+Y14YQA==",
+      "tarball": "https://registry.npmjs.org/@openai/codex/-/codex-0.167.2-linux-arm64.tgz",
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "arm64"
+      ],
+      "runner": "ubuntu-22.04-arm",
+      "target": "aarch64-unknown-linux-musl"
+    },
+    {
+      "id": "darwin-x64",
+      "version": "0.167.2-darwin-x64",
+      "integrity": "sha512-/IqO1pMHGgeiZgbuklStur3o60giaXoESQ++Vak+I6eJ6CMULvojBfzwnk2aYeytCEIWU2cXcFKHA1L2tblbVg==",
+      "tarball": "https://registry.npmjs.org/@openai/codex/-/codex-0.167.2-darwin-x64.tgz",
+      "os": [
+        "darwin"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "runner": "macos-15-intel",
+      "target": "x86_64-apple-darwin"
+    },
+    {
+      "id": "darwin-arm64",
+      "version": "0.167.2-darwin-arm64",
+      "integrity": "sha512-JB6L+L2jefDIaNgoHi7ePZKK1u2riDhlbwgm6zK57ZWpMGAYAwKgDYDb7l+xie7oUkRZuCVx307wsB/k4VsMKw==",
+      "tarball": "https://registry.npmjs.org/@openai/codex/-/codex-0.167.2-darwin-arm64.tgz",
+      "os": [
+        "darwin"
+      ],
+      "cpu": [
+        "arm64"
+      ],
+      "runner": "macos-15",
+      "target": "aarch64-apple-darwin"
+    },
+    {
+      "id": "win32-x64",
+      "version": "0.167.2-win32-x64",
+      "integrity": "sha512-AIkl2U3kjC4Ac9fINmSt8kf1W0lWqFfNZUpqtHd+UDvskYYZxx7Vga7RcAtOVNJ2v4BXb1QqpCqcTOGPHLIwRw==",
+      "tarball": "https://registry.npmjs.org/@openai/codex/-/codex-0.167.2-win32-x64.tgz",
+      "os": [
+        "win32"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "runner": "windows-2025",
+      "target": "x86_64-pc-windows-msvc"
+    },
+    {
+      "id": "win32-arm64",
+      "version": "0.167.2-win32-arm64",
+      "integrity": "sha512-RyUq/XcXNylg8UW0u6Y1d/JlYr6d+HcOBiIPP8Z+rJrKXD09nG5Cm8AkTd5GhpiNmb72d8LD6z8a8cx3HImBFw==",
+      "tarball": "https://registry.npmjs.org/@openai/codex/-/codex-0.167.2-win32-arm64.tgz",
+      "os": [
+        "win32"
+      ],
+      "cpu": [
+        "arm64"
+      ],
+      "runner": "windows-11-arm",
+      "target": "aarch64-pc-windows-msvc"
+    }
+  ],
+  "zig": {
+    "x86_64-linux": {
+      "tarball": "https://ziglang.org/download/0.14.0/zig-linux-x86_64-0.14.0.tar.xz",
+      "shasum": "473ec26806133cf4d1918caf1a410f8403a13d979726a9045b421b685031a982",
+      "size": "49091960"
+    },
+    "aarch64-linux": {
+      "tarball": "https://ziglang.org/download/0.14.0/zig-linux-aarch64-0.14.0.tar.xz",
+      "shasum": "ab64e3ea277f6fc5f3d723dcd95d9ce1ab282c8ed0f431b4de880d30df891e4f",
+      "size": "44922728"
+    }
+  },
+  "goalTest": "goal_files::managed_compatibility_tests::saved_stock_goal_reference_remains_readable_and_owner_scoped",
+  "runnerPricingSource": "https://docs.github.com/en/actions/reference/runners/github-hosted-runners",
+  "noProductionSecrets": true
+}

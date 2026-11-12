@@ -1,0 +1,108 @@
+name: MagnetAPI CoderX native 0.167.2
+
+on:
+  push:
+    branches: [magnetapi/coderx-01672-20261112]
+    paths: [magnetapi-native/0.167.2/RUN-BUILD]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: magnetapi-native-01672-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  native:
+    if: github.repository == 'embire2/codex'
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - platform: linux-x64
+            runner: ubuntu-22.04
+            target: x86_64-unknown-linux-musl
+          - platform: linux-arm64
+            runner: ubuntu-22.04-arm
+            target: aarch64-unknown-linux-musl
+          - platform: darwin-x64
+            runner: macos-15-intel
+            target: x86_64-apple-darwin
+          - platform: darwin-arm64
+            runner: macos-15
+            target: aarch64-apple-darwin
+          - platform: win32-x64
+            runner: windows-2025
+            target: x86_64-pc-windows-msvc
+          - platform: win32-arm64
+            runner: windows-11-arm
+            target: aarch64-pc-windows-msvc
+    runs-on: ${{ matrix.runner }}
+    defaults:
+      run:
+        shell: bash
+    env:
+      CARGO_HOME: ${{ github.workspace }}/.cargo-home
+      RUSTUP_TOOLCHAIN: 1.95.0
+      CARGO_BUILD_JOBS: 2
+      CARGO_PROFILE_RELEASE_LTO: 'false'
+      CARGO_PROFILE_RELEASE_CODEGEN_UNITS: 16
+      CARGO_PROFILE_RELEASE_OPT_LEVEL: 1
+      CARGO_PROFILE_RELEASE_DEBUG: 0
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      TARGET: ${{ matrix.target }}
+      AWS_LC_SYS_NO_JITTER_ENTROPY: 1
+    steps:
+      - name: Checkout only reviewed build inputs
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # official v6, verified 2026-11-12
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          path: control
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # official v6, verified 2026-11-12
+        with:
+          python-version: '3.13'
+      - name: Verify official source, presentation patch and upstream helper resources
+        run: python control/magnetapi-native/0.167.2/prepare_native.py prepare '${{ matrix.platform }}'
+      - name: Install exact Rust compiler and target
+        run: |
+          rustup toolchain install 1.95.0 --profile minimal
+          rustup target add --toolchain 1.95.0 '${{ matrix.target }}'
+          rustc --version
+      - name: Install checksum-pinned Zig for musl
+        if: runner.os == 'Linux'
+        run: python control/magnetapi-native/0.167.2/prepare_native.py zig '${{ matrix.platform }}'
+      - name: Configure official musl build dependencies on the disposable runner
+        if: runner.os == 'Linux'
+        run: bash .github/scripts/install-musl-build-tools.sh
+      - name: Configure MSVC SDK on the disposable runner
+        if: runner.os == 'Windows'
+        uses: ./.github/actions/setup-msvc-env
+        with:
+          target: ${{ matrix.target }}
+      - name: Verify official prebuilt V8 archive and bindings
+        uses: ./.github/actions/setup-rusty-v8
+        with:
+          target: ${{ matrix.target }}
+      - name: Compile presentation fork
+        working-directory: codex-rs
+        run: cargo build --locked --release --target '${{ matrix.target }}' --bin codex --package codex-cli
+      - name: Compiled saved-goal compatibility regression
+        if: matrix.platform == 'linux-x64'
+        run: python control/magnetapi-native/0.167.2/prepare_native.py goal-test '${{ matrix.platform }}'
+      - name: Native help, account/update boundaries, local tools and terminal smoke checks
+        run: python control/magnetapi-native/0.167.2/native_smoke.py '${{ matrix.platform }}'
+      - name: Package tested immutable platform archive with legal notices
+        run: python control/magnetapi-native/0.167.2/prepare_native.py pack '${{ matrix.platform }}'
+      - name: Retain verified build artifacts for one day
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # official v6, verified 2026-11-12
+        with:
+          name: coderx-01672-${{ matrix.platform }}
+          path: managed-artifacts/*
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
