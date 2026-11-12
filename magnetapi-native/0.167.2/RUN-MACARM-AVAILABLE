@@ -1,0 +1,1 @@
+Use a standard available macOS ARM runner after repeated acquisition failures, preserving exact product target and comparing minimum supported OS to original before acceptance.
