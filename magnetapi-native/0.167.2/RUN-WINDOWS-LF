@@ -1,0 +1,1 @@
+Windows only: apply the exact reviewed patch with per-command core.autocrlf=false, preserve all SHA checks/source bytes and active Linux/macOS work.

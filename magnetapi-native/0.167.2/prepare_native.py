@@ -81,8 +81,8 @@ def prepare(name):
     boundaries = json.loads((CONTROL / "native-branding-changes.json").read_text())
     for row in boundaries["changes"]:
         assert sha(ROOT / row["path"]) == row["before"], row["path"]
-    subprocess.run(["git", "apply", "--check", "--whitespace=nowarn", str(patch)], cwd=ROOT, check=True)
-    subprocess.run(["git", "apply", "--whitespace=nowarn", str(patch)], cwd=ROOT, check=True)
+    subprocess.run(["git", "-c", "core.autocrlf=false", "apply", "--check", "--whitespace=nowarn", str(patch)], cwd=ROOT, check=True)
+    subprocess.run(["git", "-c", "core.autocrlf=false", "apply", "--whitespace=nowarn", str(patch)], cwd=ROOT, check=True)
     changed = {row["path"]: row for row in boundaries["changes"]}
     # Assert every file outside the reviewed presentation/test patch remains identical.
     with tarfile.open(archive) as tf:
