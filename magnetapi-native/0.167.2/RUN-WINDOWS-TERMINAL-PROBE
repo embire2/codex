@@ -1,1 +1,1 @@
-Synthetic ConPTY stdin/stdout/stderr handle QA only; ten-minute standard public runner. No product source/lock/native release byte change; no credentials, production session, RDP, or Windows Rust rebuild.
+Synthetic terminal probe attempt2: match Microsoft Terminal null STARTF_USESTDHANDLES to prevent inherited CI pipes. No product or native build change; actual console attachment must pass.
