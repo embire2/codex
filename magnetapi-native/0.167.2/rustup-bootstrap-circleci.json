@@ -1,0 +1,7 @@
+{
+  "version": "1.28.2",
+  "target": "aarch64-apple-darwin",
+  "url": "https://static.rust-lang.org/rustup/archive/1.28.2/aarch64-apple-darwin/rustup-init",
+  "sha256": "20ef5516c31b1ac2290084199ba77dbbcaa1406c45c1d978ca68558ef5964ef5",
+  "officialChecksumUrl": "https://static.rust-lang.org/rustup/archive/1.28.2/aarch64-apple-darwin/rustup-init.sha256"
+}

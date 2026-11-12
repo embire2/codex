@@ -1,0 +1,75 @@
+version: 2.1
+
+parameters:
+  run_native_arm64:
+    type: boolean
+    default: false
+  reviewed_revision:
+    type: string
+    default: ""
+  free_quota_verified:
+    type: boolean
+    default: false
+  free_credit_reserve:
+    type: integer
+    default: 0
+  artifact_retention_days:
+    type: integer
+    default: 0
+
+jobs:
+  coderx-darwin-arm64:
+    macos:
+      xcode: "26.5.0"
+    resource_class: m4pro.medium
+    working_directory: ~/magnetapi-native-01672
+    environment:
+      MAGNET_REVIEWED_REVISION: << pipeline.parameters.reviewed_revision >>
+      MAGNET_FREE_CREDIT_RESERVE: << pipeline.parameters.free_credit_reserve >>
+      MAGNET_ARTIFACT_RETENTION_DAYS: << pipeline.parameters.artifact_retention_days >>
+      MAGNET_CI_PIPELINE_ID: << pipeline.id >>
+    steps:
+      - run:
+          name: Verify exact public branch and reviewed revision before credential-free checkout
+          no_output_timeout: 2m
+          command: |
+            python3 - \<<'PY_CHECK'
+            import os,re,subprocess
+            assert os.environ['CIRCLE_BRANCH']=='magnetapi/coderx-01672-20261112'
+            assert not os.environ.get('CIRCLE_PULL_REQUEST') and not os.environ.get('CIRCLE_PR_NUMBER')
+            assert os.environ['CIRCLE_REPOSITORY_URL'] in ['https://github.com/embire2/codex','https://github.com/embire2/codex.git','git@github.com:embire2/codex.git']
+            revision=os.environ['CIRCLE_SHA1'];assert re.fullmatch('[a-f0-9]{40}',revision)
+            assert revision==os.environ['MAGNET_REVIEWED_REVISION']
+            assert int(os.environ['MAGNET_FREE_CREDIT_RESERVE'])>=18000
+            assert int(os.environ['MAGNET_ARTIFACT_RETENTION_DAYS'])==1
+            git_env={k:v for k,v in os.environ.items() if k in ['PATH','HOME','TMPDIR','LANG','LC_ALL']}
+            git_env.update(GIT_CONFIG_NOSYSTEM='1',GIT_CONFIG_GLOBAL='/dev/null',GIT_TERMINAL_PROMPT='0')
+            subprocess.run(['git','-c','credential.helper=','init','control'],env=git_env,check=True,timeout=30)
+            subprocess.run(['git','-C','control','-c','credential.helper=','-c','http.extraHeader=','fetch','--depth=1','https://github.com/embire2/codex.git',revision],env=git_env,check=True,timeout=90)
+            subprocess.run(['git','-C','control','checkout','--detach','FETCH_HEAD'],env=git_env,check=True,timeout=30)
+            PY_CHECK
+      - run:
+          name: Verify public inputs and build/test/package the native ARM64 runtime
+          no_output_timeout: 15m
+          command: python3 control/magnetapi-native/0.167.2/circleci_native.py
+          teardown:
+            - store_artifacts:
+                path: managed-artifacts
+                destination: coderx-01672-darwin-arm64
+            - store_artifacts:
+                path: managed-diagnostics
+                destination: diagnostics-NOT-FOR-RELEASE
+
+workflows:
+  coderx-arm64-reviewed-manual:
+    when:
+      and:
+        - << pipeline.parameters.run_native_arm64 >>
+        - << pipeline.parameters.free_quota_verified >>
+    jobs:
+      - coderx-darwin-arm64:
+          filters:
+            branches:
+              only: magnetapi/coderx-01672-20261112
+            tags:
+              ignore: /.*/
