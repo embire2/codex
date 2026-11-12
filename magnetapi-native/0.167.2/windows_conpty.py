@@ -84,6 +84,8 @@ def capture_idle(binary, directory, environment):
         checked(kernel.UpdateProcThreadAttribute(attributes, 0, 0x00020016, console, C.sizeof(console), None, None), "ConPTY startup console")
         startup = StartupInfoEx()
         startup.StartupInfo.cb = C.sizeof(startup)
+        # Match Microsoft Terminal: null explicit handles prevent inherited CI pipes.
+        startup.StartupInfo.dwFlags = 0x00000100  # STARTF_USESTDHANDLES
         startup.lpAttributeList = C.cast(attributes, C.c_void_p)
         command = C.create_unicode_buffer(subprocess.list2cmdline([str(binary), "--no-alt-screen"]))
         block = C.create_unicode_buffer("\0".join(k + "=" + v for k, v in sorted(environment.items(), key=lambda pair: pair[0].casefold())) + "\0\0")

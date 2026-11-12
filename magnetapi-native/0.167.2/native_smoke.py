@@ -24,15 +24,18 @@ def run(args, env, *, cwd, timeout=90):
     return subprocess.run([str(BINARY), *args], cwd=cwd, env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
 
 
+RECORDS = []
+
+
 def main():
-    records = []
+    records = RECORDS
     with tempfile.TemporaryDirectory(prefix="managed-native-") as directory:
         home = Path(directory)
         native_home = home / ".codex"
         native_home.mkdir()
         env = {**os.environ, "HOME": str(home), "USERPROFILE": str(home), "CODEX_HOME": str(native_home), "TERM": "dumb", "CODEXCLAUDE_MANAGED": "1", "CODEX_DISABLE_UPDATE_CHECK": "1"}
         version = run(["--version"], env, cwd=home)
-        assert version.returncode == 0 and "0.167.2" in version.stdout
+        assert version.returncode == 0 and "0.167.2" in version.stdout, f"Version failed: rc={version.returncode}; stdout={version.stdout[:2000]!r}; stderr={version.stderr[:2000]!r}"
         for args in [["--help"], ["exec", "--help"]]:
             result = run(args, env, cwd=home)
             assert result.returncode == 0
@@ -178,12 +181,18 @@ def main():
                         child.wait(timeout=5)
                     os.close(master)
                 text = transcript.decode(errors="replace")
+                diagnostics = ROOT / "managed-diagnostics"
+                diagnostics.mkdir(exist_ok=True)
+                (diagnostics / "native-terminal.txt").write_text(text, encoding="utf8")
                 assert "Ask CoderX" in text and "MagnetAPI.org Codex CLI" in text
                 assert "OpenAI Codex" not in text
                 records.append({"check": "native-pty-branding", "passed": True})
             else:
                 from windows_conpty import capture_idle
                 text = capture_idle(BINARY, home, {**env, "TERM": "xterm-256color"})
+                diagnostics = ROOT / "managed-diagnostics"
+                diagnostics.mkdir(exist_ok=True)
+                (diagnostics / "native-terminal.txt").write_text(text, encoding="utf8")
                 assert "Ask CoderX" in text and "MagnetAPI.org Codex CLI" in text
                 assert "OpenAI Codex" not in text
                 records.append({"check": "native-windows-conpty-branding", "passed": True})
@@ -194,4 +203,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        diagnostics = ROOT / "managed-diagnostics"
+        diagnostics.mkdir(exist_ok=True)
+        (diagnostics / "native-smoke-progress.json").write_text(json.dumps({"platform": SPEC["id"], "records": RECORDS, "qualification": "partial diagnostic only; complete native-smoke.json plus successful CI required for release"}, indent=2) + "\n")

@@ -1,0 +1,1 @@
+Verified synthetic ConPTY stdio attachment fix; native-only rebuild, unchanged product source/lock/compiler/target/profile. Preserve exact failure bytes/provenance before native17check acceptance. Probe43291130575/131437345295 succeeded all three CHAR console handles and captured nonredirected output.
