@@ -1,0 +1,1 @@
+Retry only standard macOS ARM64 with the reviewed Cargo Git CLI transport fix; no source/lock/TLS/global changes or cancellation of other groups.
