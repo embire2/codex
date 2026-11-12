@@ -1,0 +1,162 @@
+name: MagnetAPI CoderX native 0.167.2 Linux x64 native and host goal validation
+
+on:
+  push:
+    branches: [magnetapi/coderx-01672-20261112]
+    paths: [magnetapi-native/0.167.2/RUN-LINUX-X64-SPLIT]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: magnetapi-native-01672-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  native:
+    if: github.repository == 'embire2/codex'
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - platform: linux-x64
+            runner: ubuntu-22.04
+            target: x86_64-unknown-linux-musl
+    runs-on: ${{ matrix.runner }}
+    defaults:
+      run:
+        shell: bash
+    env:
+      CARGO_HOME: ${{ github.workspace }}/.cargo-home
+      RUSTUP_TOOLCHAIN: 1.95.0
+      CARGO_BUILD_JOBS: 2
+      CARGO_PROFILE_RELEASE_LTO: 'false'
+      CARGO_PROFILE_RELEASE_CODEGEN_UNITS: 16
+      CARGO_PROFILE_RELEASE_OPT_LEVEL: 1
+      CARGO_PROFILE_RELEASE_DEBUG: 0
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      TARGET: ${{ matrix.target }}
+      AWS_LC_SYS_NO_JITTER_ENTROPY: 1
+    steps:
+      - name: Checkout only reviewed build inputs
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # official v6, verified 2026-11-12
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          path: control
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # official v6, verified 2026-11-12
+        with:
+          python-version: '3.13'
+      - name: Verify official source, presentation patch and upstream helper resources
+        run: python control/magnetapi-native/0.167.2/prepare_native.py prepare '${{ matrix.platform }}'
+      - name: Install exact Rust compiler and target
+        run: |
+          rustup toolchain install 1.95.0 --profile minimal
+          rustup target add --toolchain 1.95.0 '${{ matrix.target }}'
+          rustc --version
+      - name: Install checksum-pinned Zig for musl
+        if: runner.os == 'Linux'
+        run: python control/magnetapi-native/0.167.2/prepare_native.py zig '${{ matrix.platform }}'
+      - name: Configure official musl build dependencies on the disposable runner
+        if: runner.os == 'Linux'
+        run: bash .github/scripts/install-musl-build-tools.sh
+      - name: Configure MSVC SDK on the disposable runner
+        if: runner.os == 'Windows'
+        uses: ./.github/actions/setup-msvc-env
+        with:
+          target: ${{ matrix.target }}
+      - name: Verify official prebuilt V8 archive and bindings
+        uses: ./.github/actions/setup-rusty-v8
+        with:
+          target: ${{ matrix.target }}
+      - name: Compile presentation fork
+        working-directory: codex-rs
+        run: cargo build --locked --release --target '${{ matrix.target }}' --bin codex --package codex-cli
+      - name: Native help, account/update boundaries, local tools and terminal smoke checks
+        run: python control/magnetapi-native/0.167.2/native_smoke.py '${{ matrix.platform }}'
+      - name: Package tested immutable platform archive with legal notices
+        run: python control/magnetapi-native/0.167.2/prepare_native.py pack '${{ matrix.platform }}'
+      - name: Retain verified build artifacts for one day
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # official v6, verified 2026-11-12
+        with:
+          name: coderx-01672-${{ matrix.platform }}
+          path: managed-artifacts/*
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+
+  goal:
+    name: Compiled saved-goal regression on the GNU host
+    if: github.repository == 'embire2/codex'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+    defaults:
+      run:
+        shell: bash
+    env:
+      CARGO_HOME: ${{ github.workspace }}/.cargo-home
+      CARGO_NET_GIT_FETCH_WITH_CLI: 'true'
+      RUSTUP_TOOLCHAIN: 1.95.0
+      CARGO_BUILD_JOBS: 2
+      CARGO_PROFILE_RELEASE_LTO: 'false'
+      CARGO_PROFILE_RELEASE_CODEGEN_UNITS: 16
+      CARGO_PROFILE_RELEASE_OPT_LEVEL: 1
+      CARGO_PROFILE_RELEASE_DEBUG: 0
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      TARGET: x86_64-unknown-linux-gnu
+      AWS_LC_SYS_NO_JITTER_ENTROPY: 1
+    steps:
+      - name: Checkout only reviewed build inputs
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          path: control
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13'
+      - name: Verify the identical source, patch, lock and upstream helper bytes
+        run: python control/magnetapi-native/0.167.2/prepare_native.py prepare linux-x64
+      - name: Install exact Rust compiler and GNU host target
+        run: |
+          rustup toolchain install 1.95.0 --profile minimal
+          rustup target add --toolchain 1.95.0 x86_64-unknown-linux-gnu
+          rustc --version
+      - name: Install host build prerequisites on the disposable runner
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pkg-config libssl-dev libcap-dev clang cmake g++
+      - name: Verify official prebuilt GNU V8 archive and bindings
+        uses: ./.github/actions/setup-rusty-v8
+        with:
+          target: x86_64-unknown-linux-gnu
+      - name: Run the actual compiled saved-stock-goal compatibility test
+        working-directory: codex-rs
+        run: |
+          cargo test --locked --release --target x86_64-unknown-linux-gnu --package codex-tui --lib goal_files::managed_compatibility_tests::saved_stock_goal_reference_remains_readable_and_owner_scoped -- --exact | tee "$GITHUB_WORKSPACE/goal-test.log"
+          python - <<'PY_GOAL'
+          from pathlib import Path
+          import hashlib, json, os, subprocess
+          root = Path(os.environ["GITHUB_WORKSPACE"])
+          plan = json.loads((root / "control/magnetapi-native/0.167.2/plan.json").read_text())
+          text = (root / "goal-test.log").read_text()
+          assert "test result: ok. 1 passed; 0 failed" in text
+          assert plan["goalTest"] in text
+          source = root / "codex-rs/tui/src/goal_files.rs"
+          proof = {"source": plan["source"], "patchSha256": plan["patchSha256"], "goalTest": plan["goalTest"], "goalSourceSha256": hashlib.sha256(source.read_bytes()).hexdigest(), "testTarget": "x86_64-unknown-linux-gnu", "result": "1 passed; 0 failed", "compiler": subprocess.check_output(["rustc", "--version"], text=True).strip(), "ciRunId": os.environ["GITHUB_RUN_ID"], "ciCommit": os.environ["GITHUB_SHA"]}
+          out = root / "goal-proof"
+          out.mkdir()
+          (out / "goal-proof.json").write_text(json.dumps(proof, indent=2) + "\n")
+          PY_GOAL
+      - name: Retain successful compiled-goal evidence for one day
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: coderx-01672-linux-x64-goal-proof
+          path: goal-proof/goal-proof.json
+          if-no-files-found: error
+          retention-days: 1
