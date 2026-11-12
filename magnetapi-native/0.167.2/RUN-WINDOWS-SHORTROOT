@@ -1,0 +1,1 @@
+Windows only: a new five-character job-owned Cargo root keeps every measured pinned vendor path within MAX_PATH; no product/global settings changes.
