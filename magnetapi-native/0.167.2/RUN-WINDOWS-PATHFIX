@@ -1,0 +1,1 @@
+Retry Windows only after POSIX-normalizing archive lookup keys; preserve all reviewed native source/patch hashes and existing Linux/macOS jobs.

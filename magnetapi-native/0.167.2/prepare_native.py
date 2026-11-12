@@ -89,7 +89,7 @@ def prepare(name):
         for member in tf:
             if not member.isfile():
                 continue
-            rel = str(Path(*Path(member.name).parts[1:]))
+            rel = Path(*Path(member.name).parts[1:]).as_posix()
             original_hash = hashlib.sha256(tf.extractfile(member).read()).hexdigest()
             assert sha(ROOT / rel) == changed.get(rel, {}).get("after", original_hash), rel
     lock = ROOT / "codex-rs/Cargo.lock"
