@@ -23,7 +23,7 @@ jobs:
       matrix:
         include:
           - platform: darwin-arm64
-            runner: macos-26
+            runner: macos-15
             target: aarch64-apple-darwin
     runs-on: ${{ matrix.runner }}
     defaults:
