@@ -77,7 +77,7 @@ assert os.environ["CIRCLE_BRANCH"] == "magnetapi/coderx-01672-20261112"
 assert os.environ["CIRCLE_SHA1"] == os.environ["MAGNET_REVIEWED_REVISION"]
 assert re.fullmatch("[a-f0-9]{40}", os.environ["CIRCLE_SHA1"])
 assert int(os.environ["MAGNET_FREE_CREDIT_RESERVE"]) >= 18000
-assert int(os.environ["MAGNET_ARTIFACT_RETENTION_DAYS"]) == 1
+assert int(os.environ["MAGNET_ARTIFACT_RETENTION_DAYS"]) == 30
 assert not os.environ.get("CIRCLE_PULL_REQUEST") and not os.environ.get("CIRCLE_PR_NUMBER")
 for key in ("CIRCLE_WORKFLOW_ID", "CIRCLE_WORKFLOW_JOB_ID", "MAGNET_CI_PIPELINE_ID"):
     uuid.UUID(os.environ[key])

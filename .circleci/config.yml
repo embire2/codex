@@ -20,7 +20,7 @@ parameters:
 jobs:
   coderx-darwin-arm64:
     macos:
-      xcode: "26.5.0"
+      xcode: "26.5"
     resource_class: m4pro.medium
     working_directory: ~/magnetapi-native-01672
     environment:
@@ -41,7 +41,7 @@ jobs:
             revision=os.environ['CIRCLE_SHA1'];assert re.fullmatch('[a-f0-9]{40}',revision)
             assert revision==os.environ['MAGNET_REVIEWED_REVISION']
             assert int(os.environ['MAGNET_FREE_CREDIT_RESERVE'])>=18000
-            assert int(os.environ['MAGNET_ARTIFACT_RETENTION_DAYS'])==1
+            assert int(os.environ['MAGNET_ARTIFACT_RETENTION_DAYS'])==30
             git_env={k:v for k,v in os.environ.items() if k in ['PATH','HOME','TMPDIR','LANG','LC_ALL']}
             git_env.update(GIT_CONFIG_NOSYSTEM='1',GIT_CONFIG_GLOBAL='/dev/null',GIT_TERMINAL_PROMPT='0')
             subprocess.run(['git','-c','credential.helper=','init','control'],env=git_env,check=True,timeout=30)
