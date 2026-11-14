@@ -129,7 +129,7 @@ try:
     run([sys.executable, str(CONTROL / "prepare_native_circleci.py"), "prepare", "darwin-arm64"])
     apply_owned_env(owned_env)
     bootstrap = json.loads((CONTROL / "rustup-bootstrap-circleci.json").read_text())
-    installer = ROOT / ".rustup-init"
+    installer = ROOT / "rustup-init"
     module.download(bootstrap["url"], installer, expected_sha=bootstrap["sha256"], limit=30_000_000)
     installer.chmod(0o700)
     run([str(installer), "-y", "--no-modify-path", "--profile", "minimal", "--default-toolchain", "none"])
