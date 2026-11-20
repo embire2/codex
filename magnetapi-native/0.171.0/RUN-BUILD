@@ -1,1 +1,2 @@
-Build and qualify the frozen CoderX 0.171.0 candidate.
+Build the five required standard-runner platforms from the reviewed CoderX source and managed 0.171.0 patch.
+The separate CircleCI Free Apple Silicon build remains pinned to its original reviewed commit.
