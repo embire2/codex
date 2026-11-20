@@ -22,7 +22,7 @@ assert os.environ["CIRCLE_SHA1"] == os.environ["MAGNET_REVIEWED_REVISION"]
 assert int(os.environ["MAGNET_FREE_CREDIT_RESERVE"]) >= 5000
 assert int(os.environ["MAGNET_ARTIFACT_RETENTION_DAYS"]) == 30
 
-PUBLIC = {"PATH", "Path", "SystemRoot", "WINDIR", "COMSPEC", "PATHEXT", "ProgramFiles(x86)", "ProgramFiles", "LOCALAPPDATA", "APPDATA", "PROCESSOR_ARCHITECTURE", "CIRCLE_SHA1",
+PUBLIC = {"PATH", "Path", "SystemRoot", "WINDIR", "COMSPEC", "PATHEXT", "ProgramFiles(x86)", "ProgramFiles", "LOCALAPPDATA", "APPDATA", "PROCESSOR_ARCHITECTURE", "ProgramData", "SystemDrive", "ALLUSERSPROFILE", "CommonProgramFiles", "CommonProgramFiles(x86)", "ProgramW6432", "CIRCLE_SHA1",
           "CIRCLE_BRANCH","CIRCLE_WORKFLOW_ID","CIRCLE_WORKFLOW_JOB_ID","CIRCLE_BUILD_NUM","MAGNET_CI_PIPELINE_ID"}
 PUBLIC = {key.upper() for key in PUBLIC}
 ENV = {k:v for k,v in os.environ.items() if k.upper() in PUBLIC}
@@ -47,11 +47,9 @@ ENV.update(HOME=str(HOME),USERPROFILE=str(HOME),RUNNER_TEMP=str(TMP),TMPDIR=str(
 assert len(ENV["CARGO_HOME"])<=5
 Path(ENV["CARGO_HOME"]).mkdir(exist_ok=False)
 
-def run(args, cwd=ROOT, capture=False, max_seconds=None):
+def run(args, cwd=ROOT, capture=False):
     wait = DEADLINE - time.monotonic()
     assert wait > 0
-    if max_seconds is not None:
-        wait = min(wait, max_seconds)
     executable = shutil.which(args[0], path=ENV["PATH"])
     assert executable, args[0]
     return subprocess.run([executable, *args[1:]], cwd=cwd, env=ENV, stdin=subprocess.DEVNULL, check=True,
@@ -82,14 +80,6 @@ run(["rustup","toolchain","install","1.99.1","--profile","minimal"])
 run(["rustup","target","add","--toolchain","1.99.1",TARGET])
 compiler=run(["rustc","--version"],capture=True).strip()
 assert compiler.startswith("rustc 1.99.1 ")
-# The Free Windows image lacks the required optional MSVC component. Install
-# exactly the documented signed build tools on this disposable VM only.
-assert shutil.disk_usage(ROOT).free >= 50 * 1024 ** 3
-vs_bootstrap = TMP / "vs_buildtools.exe"
-vs_plan = json.loads((CONTROL/"windows-buildtools.official.json").read_text())
-build.download(vs_plan["url"],vs_bootstrap,expected_sha=vs_plan["sha256"],limit=10_000_000)
-assert vs_bootstrap.stat().st_size == vs_plan["bytes"]
-run(["pwsh.exe","-NoProfile","-File",str(CONTROL/"install-msvc-circleci.ps1"),str(vs_bootstrap)],max_seconds=13*60)
 run(["pwsh.exe","-NoProfile","-File",str(ROOT/".github/actions/setup-msvc-env/setup-msvc-env.ps1"),"-Target",TARGET,"-HostArch","x64"])
 apply_env()
 version=run([sys.executable,".github/scripts/rusty_v8_bazel.py","resolved-v8-crate-version"],capture=True).strip()

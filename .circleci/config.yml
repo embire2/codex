@@ -1,7 +1,7 @@
 version: 2.1
 
 parameters:
-  inspect_windows_toolchain:
+  run_native_win:
     type: boolean
     default: false
   reviewed_revision:
@@ -18,7 +18,7 @@ parameters:
     default: 0
 
 jobs:
-  coderx-windows-toolchain-inspection:
+  coderx-win:
     machine:
       image: windows-server-2022-gui:current
       shell: pwsh.exe -NoProfile
@@ -58,7 +58,7 @@ jobs:
             revision=os.environ['CIRCLE_SHA1'];assert re.fullmatch('[a-f0-9]{40}',revision)
             assert revision==os.environ['MAGNET_REVIEWED_REVISION']
             assert revision==os.environ['MAGNET_CHECKOUT_REVISION']==os.environ['MAGNET_CONFIG_REVISION']
-            assert int(os.environ['MAGNET_FREE_CREDIT_RESERVE'])>=500
+            assert int(os.environ['MAGNET_FREE_CREDIT_RESERVE'])>=5000
             assert int(os.environ['MAGNET_ARTIFACT_RETENTION_DAYS'])==30
             git_env={k:v for k,v in os.environ.items() if k.upper() in ['PATH','HOME','TMPDIR','LANG','LC_ALL','SYSTEMROOT','WINDIR','COMSPEC','PATHEXT','USERPROFILE']}
             git_env.update(GIT_CONFIG_NOSYSTEM='1',GIT_CONFIG_GLOBAL=os.devnull,GIT_TERMINAL_PROMPT='0')
@@ -68,43 +68,28 @@ jobs:
             '@ | python -
             if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - run:
-          name: Compare VS C++ visibility with the original and sanitized build environments
-          no_output_timeout: 1m
+          name: Verify public inputs and build/test/package the native Windows x64 runtime
+          no_output_timeout: 15m
           command: |
-            @'
-            import json, os, pathlib, subprocess
-            root = pathlib.Path("C:/")
-            locator = root / "Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe"
-            assert locator.is_file()
-            fields = ("installationPath", "installationName", "installationVersion", "state", "productId", "isComplete")
-            args = [str(locator), "-all", "-products", "*", "-format", "json", "-utf8"]
-            allowed = {"PATH","SYSTEMROOT","WINDIR","COMSPEC","PATHEXT","PROGRAMFILES(X86)","PROGRAMFILES","LOCALAPPDATA","APPDATA","PROCESSOR_ARCHITECTURE"}
-            public = {k:v for k,v in os.environ.items() if k.upper() in allowed}
-            def discover(env, required):
-                extra = ["-requires", "Microsoft.VisualStudio.Component.VC.Tools.x86.x64"] if required else []
-                run = subprocess.run(args + extra, env=env, capture_output=True, check=True, timeout=15)
-                items = json.loads(run.stdout)
-                return [{k:v for k,v in item.items() if k in fields} for item in items]
-            environment = ["ProgramData","SystemDrive","ALLUSERSPROFILE","CommonProgramFiles","CommonProgramFiles(x86)","ProgramW6432","ProgramFiles","ProgramFiles(x86)"]
-            expanded = {**public, **{k:os.environ[k] for k in environment if k in os.environ}}
-            print(json.dumps({name:{"discovery":discover(env,False),"cpp":discover(env,True)}
-                              for name,env in [("normal",None),("sanitized",public),("expanded",expanded)]}))
-            components = [str(p) for parent in [root/"Program Files/Microsoft Visual Studio", root/"Program Files (x86)/Microsoft Visual Studio"]
-                          for p in parent.glob("2022/*/VC/Tools/MSVC/*/bin/Hostx64/x64/cl.exe")]
-            sdk = [str(p) for p in (root/"Program Files (x86)/Windows Kits/10/Include").glob("*/um/Windows.h")]
-            print(json.dumps({"compilerPaths":components,"windowsSdkHeaders":sdk}))
-            '@ | python -
+            python control/magnetapi-native/0.171.0/circleci_win.py
             exit $LASTEXITCODE
+          teardown:
+            - store_artifacts:
+                path: managed-artifacts
+                destination: coderx-01710-win32-x64
+            - store_artifacts:
+                path: managed-diagnostics
+                destination: diagnostics-NOT-FOR-RELEASE
 
 workflows:
-  coderx-windows-toolchain-inspection-reviewed-manual:
+  coderx-win-reviewed-manual:
     when:
       and:
-        - << pipeline.parameters.inspect_windows_toolchain >>
+        - << pipeline.parameters.run_native_win >>
         - << pipeline.parameters.free_quota_verified >>
     jobs:
-      - coderx-windows-toolchain-inspection:
-          name: coderx-windows-toolchain-inspection
+      - coderx-win:
+          name: coderx-win32-x64
           filters:
             branches:
               only: magnetapi/coderx-01710-circle-win-20261120
