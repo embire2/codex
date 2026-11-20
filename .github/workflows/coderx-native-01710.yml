@@ -4,6 +4,7 @@ on:
   push:
     branches: [magnetapi/coderx-01710-20261120]
     paths: [magnetapi-native/0.171.0/RUN-BUILD]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,7 +15,7 @@ concurrency:
 
 jobs:
   native:
-    if: github.repository == 'embire2/codex'
+    if: github.repository == 'embire2/codex' && github.ref == 'refs/heads/magnetapi/coderx-01710-20261120'
     timeout-minutes: 180
     strategy:
       fail-fast: false
@@ -41,7 +42,7 @@ jobs:
       run:
         shell: bash
     env:
-      CARGO_HOME: ${{ runner.temp }}/magnetapi-cargo
+      CARGO_HOME: ${{ github.workspace }}/.cargo-home
       CARGO_NET_GIT_FETCH_WITH_CLI: 'true'
       GIT_CONFIG_COUNT: 1
       GIT_CONFIG_KEY_0: core.longpaths

@@ -1,2 +1,2 @@
-Build the five required standard-runner platforms from the reviewed CoderX source and managed 0.171.0 patch.
-The separate CircleCI Free Apple Silicon build remains pinned to its original reviewed commit.
+Run the validated 0.171.0 native qualification on five standard public runners.
+The frozen source, native patch, vendor resources, resolver fixture and smoke tests are unchanged.
