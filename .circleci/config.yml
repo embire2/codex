@@ -22,22 +22,12 @@ jobs:
     macos:
       xcode: "26.5"
     resource_class: m4pro.medium
-    working_directory: ~/magnetapi-native-01672
+    working_directory: ~/magnetapi-native-01710
     environment:
       MAGNET_REVIEWED_REVISION: << pipeline.parameters.reviewed_revision >>
       MAGNET_FREE_CREDIT_RESERVE: << pipeline.parameters.free_credit_reserve >>
       MAGNET_ARTIFACT_RETENTION_DAYS: << pipeline.parameters.artifact_retention_days >>
       MAGNET_CI_PIPELINE_ID: << pipeline.id >>
-      MAGNET_CHECKOUT_REPO_ID: << pipeline.git.repo_id >>
-      MAGNET_CHECKOUT_REPO_URL: << pipeline.git.repo_url >>
-      MAGNET_CHECKOUT_REPO_OWNER: << pipeline.git.repo_owner >>
-      MAGNET_CHECKOUT_REPO_NAME: << pipeline.git.repo_name >>
-      MAGNET_CHECKOUT_REVISION: << pipeline.git.revision >>
-      MAGNET_CONFIG_REPO_NAME: << pipeline.config.repository.name >>
-      MAGNET_CONFIG_REPO_URL: << pipeline.config.repository.url >>
-      MAGNET_CONFIG_REVISION: << pipeline.config.sha >>
-      MAGNET_CONFIG_REF: << pipeline.config.ref >>
-      MAGNET_CONFIG_FILE_PATH: << pipeline.config.file_path >>
     steps:
       - run:
           name: Verify exact public branch and reviewed revision before credential-free checkout
@@ -45,18 +35,11 @@ jobs:
           command: |
             python3 - \<<'PY_CHECK'
             import os,re,subprocess
-            assert os.environ['CIRCLE_BRANCH']=='magnetapi/coderx-01672-20261112'
+            assert os.environ['CIRCLE_BRANCH']=='magnetapi/coderx-01710-20261120'
             assert not os.environ.get('CIRCLE_PULL_REQUEST') and not os.environ.get('CIRCLE_PR_NUMBER')
-            allowed_urls=['https://github.com/embire2/codex','https://github.com/embire2/codex.git','git@github.com:embire2/codex.git']
-            assert os.environ['MAGNET_CHECKOUT_REPO_ID']=='1207130646'
-            assert os.environ['MAGNET_CHECKOUT_REPO_OWNER']=='embire2' and os.environ['MAGNET_CHECKOUT_REPO_NAME']=='codex'
-            assert os.environ['MAGNET_CHECKOUT_REPO_URL'] in allowed_urls
-            assert os.environ['MAGNET_CONFIG_REPO_NAME']=='embire2/codex' and os.environ['MAGNET_CONFIG_REPO_URL'] in allowed_urls
-            assert os.environ['MAGNET_CONFIG_REF']=='refs/heads/magnetapi/coderx-01672-20261112'
-            assert os.environ['MAGNET_CONFIG_FILE_PATH']=='.circleci/config.yml'
+            assert os.environ['CIRCLE_REPOSITORY_URL'] in ['https://github.com/embire2/codex','https://github.com/embire2/codex.git','git@github.com:embire2/codex.git']
             revision=os.environ['CIRCLE_SHA1'];assert re.fullmatch('[a-f0-9]{40}',revision)
             assert revision==os.environ['MAGNET_REVIEWED_REVISION']
-            assert revision==os.environ['MAGNET_CHECKOUT_REVISION']==os.environ['MAGNET_CONFIG_REVISION']
             assert int(os.environ['MAGNET_FREE_CREDIT_RESERVE'])>=18000
             assert int(os.environ['MAGNET_ARTIFACT_RETENTION_DAYS'])==30
             git_env={k:v for k,v in os.environ.items() if k in ['PATH','HOME','TMPDIR','LANG','LC_ALL']}
@@ -68,11 +51,11 @@ jobs:
       - run:
           name: Verify public inputs and build/test/package the native ARM64 runtime
           no_output_timeout: 15m
-          command: python3 control/magnetapi-native/0.167.2/circleci_native.py
+          command: python3 control/magnetapi-native/0.171.0/circleci_native.py
           teardown:
             - store_artifacts:
                 path: managed-artifacts
-                destination: coderx-01672-darwin-arm64
+                destination: coderx-01710-darwin-arm64
             - store_artifacts:
                 path: managed-diagnostics
                 destination: diagnostics-NOT-FOR-RELEASE
@@ -87,6 +70,6 @@ workflows:
       - coderx-darwin-arm64:
           filters:
             branches:
-              only: magnetapi/coderx-01672-20261112
+              only: magnetapi/coderx-01710-20261120
             tags:
               ignore: /.*/

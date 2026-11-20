@@ -1,0 +1,132 @@
+name: MagnetAPI CoderX native 0.171.0 qualification
+
+on:
+  push:
+    branches: [magnetapi/coderx-01710-20261120]
+    paths: [magnetapi-native/0.171.0/RUN-BUILD]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: magnetapi-coderx-01710-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  native:
+    if: github.repository == 'embire2/codex'
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        include:
+          - platform: linux-x64
+            runner: ubuntu-22.04
+            target: x86_64-unknown-linux-musl
+          - platform: linux-arm64
+            runner: ubuntu-22.04-arm
+            target: aarch64-unknown-linux-musl
+          - platform: darwin-x64
+            runner: macos-15-intel
+            target: x86_64-apple-darwin
+          - platform: win32-x64
+            runner: windows-2025
+            target: x86_64-pc-windows-msvc
+          - platform: win32-arm64
+            runner: windows-11-arm
+            target: aarch64-pc-windows-msvc
+    runs-on: ${{ matrix.runner }}
+    defaults:
+      run:
+        shell: bash
+    env:
+      CARGO_HOME: ${{ runner.temp }}/magnetapi-cargo
+      CARGO_NET_GIT_FETCH_WITH_CLI: 'true'
+      GIT_CONFIG_COUNT: 1
+      GIT_CONFIG_KEY_0: core.longpaths
+      GIT_CONFIG_VALUE_0: 'true'
+      RUSTUP_TOOLCHAIN: 1.99.1
+      CARGO_BUILD_JOBS: 2
+      CARGO_PROFILE_RELEASE_LTO: 'false'
+      CARGO_PROFILE_RELEASE_CODEGEN_UNITS: 16
+      CARGO_PROFILE_RELEASE_OPT_LEVEL: 1
+      CARGO_PROFILE_RELEASE_DEBUG: 0
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      TARGET: ${{ matrix.target }}
+      AWS_LC_SYS_NO_JITTER_ENTROPY: 1
+    steps:
+      - name: Checkout only reviewed public build inputs
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          path: control
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13'
+      - name: Preserve Windows Git checkout compatibility
+        if: runner.os == 'Windows'
+        run: |
+          python - <<'PY_CACHE'
+          import os
+          from pathlib import Path
+          cache = Path(Path(os.environ["RUNNER_TEMP"]).anchor) / "mc"
+          assert len(str(cache)) <= 5 and not cache.exists()
+          cache.mkdir()
+          with Path(os.environ["GITHUB_ENV"]).open("a", encoding="utf-8", newline="\n") as stream:
+              stream.write("CARGO_HOME=" + str(cache) + "\n")
+          PY_CACHE
+      - name: Verify official source, presentation patch and upstream resources
+        run: python control/magnetapi-native/0.171.0/prepare_native.py prepare '${{ matrix.platform }}'
+      - name: Install exact Rust compiler and target
+        run: |
+          rustup toolchain install 1.99.1 --profile minimal
+          rustup target add --toolchain 1.99.1 '${{ matrix.target }}'
+          rustc --version
+      - name: Install checksum-pinned Zig for musl
+        if: runner.os == 'Linux'
+        run: python control/magnetapi-native/0.171.0/prepare_native.py zig '${{ matrix.platform }}'
+      - name: Configure exact upstream musl build tools
+        if: runner.os == 'Linux'
+        run: bash .github/scripts/install-musl-build-tools.sh
+      - name: Use a hardened static PIE linker on Linux x64
+        if: matrix.platform == 'linux-x64'
+        run: echo 'CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_RUSTFLAGS=-C link-arg=-Wl,--no-dynamic-linker' >> "$GITHUB_ENV"
+      - name: Configure exact upstream MSVC environment
+        if: runner.os == 'Windows'
+        uses: ./.github/actions/setup-msvc-env
+        with:
+          target: ${{ matrix.target }}
+      - name: Verify exact upstream prebuilt V8 archive and bindings
+        uses: ./.github/actions/setup-rusty-v8
+        with:
+          target: ${{ matrix.target }}
+      - name: Compile the managed native runtime
+        working-directory: codex-rs
+        run: cargo build --locked --release --target '${{ matrix.target }}' --bin codex --package codex-cli
+      - name: Verify hardened static PIE on Linux x64
+        if: matrix.platform == 'linux-x64'
+        run: python control/magnetapi-native/0.171.0/prepare_native.py elf '${{ matrix.platform }}'
+      - name: Exercise managed auth, branding, Ultra and local tools on the native runtime
+        run: python control/magnetapi-native/0.171.0/native_smoke.py '${{ matrix.platform }}'
+      - name: Pack the tested native ABI and retain official notices and resources
+        run: python control/magnetapi-native/0.171.0/prepare_native.py pack '${{ matrix.platform }}'
+      - name: Retain tested archives for one day
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: coderx-01710-${{ matrix.platform }}
+          path: managed-artifacts/*
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+      - name: Retain failure diagnostics for one day
+        if: failure()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: coderx-01710-${{ matrix.platform }}-diagnostics
+          path: managed-diagnostics/*
+          if-no-files-found: ignore
+          retention-days: 1
+          compression-level: 0
