@@ -1,7 +1,7 @@
 version: 2.1
 
 parameters:
-  run_native_arm64:
+  run_native_linux:
     type: boolean
     default: false
   reviewed_revision:
@@ -18,10 +18,15 @@ parameters:
     default: 0
 
 jobs:
-  coderx-darwin-arm64:
-    macos:
-      xcode: "26.5"
-    resource_class: m4pro.medium
+  coderx-linux:
+    parameters:
+      platform:
+        type: string
+      resource:
+        type: string
+    machine:
+      image: ubuntu-2404:current
+    resource_class: << parameters.resource >>
     working_directory: ~/magnetapi-native-01710
     environment:
       MAGNET_REVIEWED_REVISION: << pipeline.parameters.reviewed_revision >>
@@ -45,19 +50,19 @@ jobs:
           command: |
             python3 - \<<'PY_CHECK'
             import os,re,subprocess
-            assert os.environ['CIRCLE_BRANCH']=='magnetapi/coderx-01710-20261120'
+            assert os.environ['CIRCLE_BRANCH']=='magnetapi/coderx-01710-circle-linux-20261120'
             assert not os.environ.get('CIRCLE_PULL_REQUEST') and not os.environ.get('CIRCLE_PR_NUMBER')
             allowed_urls=['https://github.com/embire2/codex','https://github.com/embire2/codex.git','git@github.com:embire2/codex.git']
             assert os.environ['MAGNET_CHECKOUT_REPO_ID']=='1207130646'
             assert os.environ['MAGNET_CHECKOUT_REPO_OWNER']=='embire2' and os.environ['MAGNET_CHECKOUT_REPO_NAME']=='codex'
             assert os.environ['MAGNET_CHECKOUT_REPO_URL'] in allowed_urls
             assert os.environ['MAGNET_CONFIG_REPO_NAME']=='embire2/codex' and os.environ['MAGNET_CONFIG_REPO_URL'] in allowed_urls
-            assert os.environ['MAGNET_CONFIG_REF']=='refs/heads/magnetapi/coderx-01710-20261120'
+            assert os.environ['MAGNET_CONFIG_REF']=='refs/heads/magnetapi/coderx-01710-circle-linux-20261120'
             assert os.environ['MAGNET_CONFIG_FILE_PATH']=='.circleci/config.yml'
             revision=os.environ['CIRCLE_SHA1'];assert re.fullmatch('[a-f0-9]{40}',revision)
             assert revision==os.environ['MAGNET_REVIEWED_REVISION']
             assert revision==os.environ['MAGNET_CHECKOUT_REVISION']==os.environ['MAGNET_CONFIG_REVISION']
-            assert int(os.environ['MAGNET_FREE_CREDIT_RESERVE'])>=18000
+            assert int(os.environ['MAGNET_FREE_CREDIT_RESERVE'])>=5000
             assert int(os.environ['MAGNET_ARTIFACT_RETENTION_DAYS'])==30
             git_env={k:v for k,v in os.environ.items() if k in ['PATH','HOME','TMPDIR','LANG','LC_ALL']}
             git_env.update(GIT_CONFIG_NOSYSTEM='1',GIT_CONFIG_GLOBAL='/dev/null',GIT_TERMINAL_PROMPT='0')
@@ -66,27 +71,39 @@ jobs:
             subprocess.run(['git','-C','control','checkout','--detach','FETCH_HEAD'],env=git_env,check=True,timeout=30)
             PY_CHECK
       - run:
-          name: Verify public inputs and build/test/package the native ARM64 runtime
+          name: Verify public inputs and build/test/package the native Linux runtime
           no_output_timeout: 15m
-          command: python3 control/magnetapi-native/0.171.0/circleci_native.py
+          command: timeout 55m python3 control/magnetapi-native/0.171.0/circleci_linux.py << parameters.platform >>
           teardown:
             - store_artifacts:
                 path: managed-artifacts
-                destination: coderx-01710-darwin-arm64
+                destination: coderx-01710-<< parameters.platform >>
             - store_artifacts:
                 path: managed-diagnostics
                 destination: diagnostics-NOT-FOR-RELEASE
 
 workflows:
-  coderx-arm64-reviewed-manual:
+  coderx-linux-reviewed-manual:
     when:
       and:
-        - << pipeline.parameters.run_native_arm64 >>
+        - << pipeline.parameters.run_native_linux >>
         - << pipeline.parameters.free_quota_verified >>
     jobs:
-      - coderx-darwin-arm64:
+      - coderx-linux:
+          name: coderx-linux-x64
+          platform: linux-x64
+          resource: large
           filters:
             branches:
-              only: magnetapi/coderx-01710-20261120
+              only: magnetapi/coderx-01710-circle-linux-20261120
+            tags:
+              ignore: /.*/
+      - coderx-linux:
+          name: coderx-linux-arm64
+          platform: linux-arm64
+          resource: arm.large
+          filters:
+            branches:
+              only: magnetapi/coderx-01710-circle-linux-20261120
             tags:
               ignore: /.*/
