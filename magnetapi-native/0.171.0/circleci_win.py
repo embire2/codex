@@ -38,7 +38,7 @@ for path in (ENV_FILE, PATH_FILE, HOME / ".npmrc"):
 ENV.update(HOME=str(HOME),USERPROFILE=str(HOME),RUNNER_TEMP=str(TMP),TMPDIR=str(TMP),
     GITHUB_WORKSPACE=str(ROOT),GITHUB_ENV=str(ENV_FILE),GITHUB_PATH=str(PATH_FILE),TEMP=str(TMP),TMP=str(TMP),
     CARGO_HOME=str(Path(ROOT.anchor) / "mc"),RUSTUP_HOME=str(HOME/".rustup"),RUSTUP_TOOLCHAIN="1.99.1",
-    CARGO_BUILD_JOBS="3",CARGO_NET_GIT_FETCH_WITH_CLI="true",TARGET=TARGET,RUSTUP_INIT_SKIP_PATH_CHECK="yes",
+    CARGO_BUILD_JOBS="3",CARGO_NET_GIT_FETCH_WITH_CLI="true",TARGET=TARGET,RUSTUP_INIT_SKIP_PATH_CHECK="yes",CI="true",
     CARGO_PROFILE_RELEASE_LTO="false",CARGO_PROFILE_RELEASE_CODEGEN_UNITS="16",
     CARGO_PROFILE_RELEASE_OPT_LEVEL="1",CARGO_PROFILE_RELEASE_DEBUG="0",CARGO_PROFILE_RELEASE_STRIP="symbols",
     AWS_LC_SYS_NO_JITTER_ENTROPY="1",GIT_TERMINAL_PROMPT="0",GIT_CONFIG_NOSYSTEM="1",
@@ -75,6 +75,7 @@ build.download(bootstrap["url"], installer, expected_sha=bootstrap["sha256"], li
 installer.chmod(0o700)
 run([str(installer),"-y","--no-modify-path","--profile","minimal","--default-toolchain","none"])
 ENV["PATH"]=str(Path(ENV["CARGO_HOME"])/"bin")+os.pathsep+(ENV.get("PATH") or ENV.pop("Path"))
+run(["rustup","set","auto-self-update","disable"])
 run(["rustup","toolchain","install","1.99.1","--profile","minimal"])
 run(["rustup","target","add","--toolchain","1.99.1",TARGET])
 compiler=run(["rustc","--version"],capture=True).strip()
