@@ -22,7 +22,7 @@ jobs:
     macos:
       xcode: "26.5"
     resource_class: m4pro.medium
-    working_directory: ~/magnetapi-native-01672
+    working_directory: ~/magnetapi-native-01710
     environment:
       MAGNET_REVIEWED_REVISION: << pipeline.parameters.reviewed_revision >>
       MAGNET_FREE_CREDIT_RESERVE: << pipeline.parameters.free_credit_reserve >>
@@ -45,14 +45,14 @@ jobs:
           command: |
             python3 - \<<'PY_CHECK'
             import os,re,subprocess
-            assert os.environ['CIRCLE_BRANCH']=='magnetapi/coderx-01672-20261112'
+            assert os.environ['CIRCLE_BRANCH']=='magnetapi/coderx-01710-20261120'
             assert not os.environ.get('CIRCLE_PULL_REQUEST') and not os.environ.get('CIRCLE_PR_NUMBER')
             allowed_urls=['https://github.com/embire2/codex','https://github.com/embire2/codex.git','git@github.com:embire2/codex.git']
             assert os.environ['MAGNET_CHECKOUT_REPO_ID']=='1207130646'
             assert os.environ['MAGNET_CHECKOUT_REPO_OWNER']=='embire2' and os.environ['MAGNET_CHECKOUT_REPO_NAME']=='codex'
             assert os.environ['MAGNET_CHECKOUT_REPO_URL'] in allowed_urls
             assert os.environ['MAGNET_CONFIG_REPO_NAME']=='embire2/codex' and os.environ['MAGNET_CONFIG_REPO_URL'] in allowed_urls
-            assert os.environ['MAGNET_CONFIG_REF']=='refs/heads/magnetapi/coderx-01672-20261112'
+            assert os.environ['MAGNET_CONFIG_REF']=='refs/heads/magnetapi/coderx-01710-20261120'
             assert os.environ['MAGNET_CONFIG_FILE_PATH']=='.circleci/config.yml'
             revision=os.environ['CIRCLE_SHA1'];assert re.fullmatch('[a-f0-9]{40}',revision)
             assert revision==os.environ['MAGNET_REVIEWED_REVISION']
@@ -68,11 +68,11 @@ jobs:
       - run:
           name: Verify public inputs and build/test/package the native ARM64 runtime
           no_output_timeout: 15m
-          command: python3 control/magnetapi-native/0.167.2/circleci_native.py
+          command: python3 control/magnetapi-native/0.171.0/circleci_native.py
           teardown:
             - store_artifacts:
                 path: managed-artifacts
-                destination: coderx-01672-darwin-arm64
+                destination: coderx-01710-darwin-arm64
             - store_artifacts:
                 path: managed-diagnostics
                 destination: diagnostics-NOT-FOR-RELEASE
@@ -87,6 +87,6 @@ workflows:
       - coderx-darwin-arm64:
           filters:
             branches:
-              only: magnetapi/coderx-01672-20261112
+              only: magnetapi/coderx-01710-20261120
             tags:
               ignore: /.*/
