@@ -5,6 +5,10 @@ on:
     branches: [magnetapi/coderx-01710-20261120]
     paths: [magnetapi-native/0.171.0/RUN-BUILD]
   workflow_dispatch:
+  pull_request:
+    branches: [magnetapi/coderx-01672-20261112]
+    types: [opened]
+    paths: [magnetapi-native/0.171.0/RUN-BUILD]
 
 permissions:
   contents: read
@@ -15,7 +19,14 @@ concurrency:
 
 jobs:
   native:
-    if: github.repository == 'embire2/codex' && github.ref == 'refs/heads/magnetapi/coderx-01710-20261120'
+    if: >-
+      github.repository == 'embire2/codex' &&
+      (github.ref == 'refs/heads/magnetapi/coderx-01710-20261120' ||
+       (github.event_name == 'pull_request' &&
+        github.event.pull_request.draft &&
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        github.head_ref == 'magnetapi/coderx-01710-20261120' &&
+        github.base_ref == 'magnetapi/coderx-01672-20261112'))
     timeout-minutes: 180
     strategy:
       fail-fast: false
