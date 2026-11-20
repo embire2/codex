@@ -5,6 +5,7 @@ import importlib.util
 import json
 import os
 import platform
+import shutil
 import subprocess
 import sys
 import time
@@ -37,7 +38,7 @@ for path in (ENV_FILE, PATH_FILE, HOME / ".npmrc"):
 ENV.update(HOME=str(HOME),USERPROFILE=str(HOME),RUNNER_TEMP=str(TMP),TMPDIR=str(TMP),
     GITHUB_WORKSPACE=str(ROOT),GITHUB_ENV=str(ENV_FILE),GITHUB_PATH=str(PATH_FILE),TEMP=str(TMP),TMP=str(TMP),
     CARGO_HOME=str(Path(ROOT.anchor) / "mc"),RUSTUP_HOME=str(HOME/".rustup"),RUSTUP_TOOLCHAIN="1.99.1",
-    CARGO_BUILD_JOBS="3",CARGO_NET_GIT_FETCH_WITH_CLI="true",TARGET=TARGET,
+    CARGO_BUILD_JOBS="3",CARGO_NET_GIT_FETCH_WITH_CLI="true",TARGET=TARGET,RUSTUP_INIT_SKIP_PATH_CHECK="yes",
     CARGO_PROFILE_RELEASE_LTO="false",CARGO_PROFILE_RELEASE_CODEGEN_UNITS="16",
     CARGO_PROFILE_RELEASE_OPT_LEVEL="1",CARGO_PROFILE_RELEASE_DEBUG="0",CARGO_PROFILE_RELEASE_STRIP="symbols",
     AWS_LC_SYS_NO_JITTER_ENTROPY="1",GIT_TERMINAL_PROMPT="0",GIT_CONFIG_NOSYSTEM="1",
@@ -49,7 +50,9 @@ Path(ENV["CARGO_HOME"]).mkdir(exist_ok=False)
 def run(args, cwd=ROOT, capture=False):
     wait = DEADLINE - time.monotonic()
     assert wait > 0
-    return subprocess.run(args, cwd=cwd, env=ENV, stdin=subprocess.DEVNULL, check=True,
+    executable = shutil.which(args[0], path=ENV["PATH"])
+    assert executable, args[0]
+    return subprocess.run([executable, *args[1:]], cwd=cwd, env=ENV, stdin=subprocess.DEVNULL, check=True,
                           timeout=wait, text=True, stdout=subprocess.PIPE if capture else None).stdout
 
 def apply_env():
