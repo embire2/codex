@@ -1,0 +1,13 @@
+name: MagnetAPI CoderX native 0.171.0 qualification
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  release-branch-only:
+    if: github.ref == 'refs/heads/magnetapi/coderx-01710-20261120'
+    runs-on: ubuntu-22.04
+    steps:
+      - run: exit 1
